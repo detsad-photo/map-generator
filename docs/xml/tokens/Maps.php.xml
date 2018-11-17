@@ -1,0 +1,1165 @@
+<?xml version="1.0"?>
+<source xmlns="http://xml.phpdox.net/token">
+  <file xmlns="http://xml.phpdox.net/src" path="J:/projects/yandex-maps/engine" file="Maps.php" realpath="J:/projects/yandex-maps/engine/Maps.php" size="7940" time="2018-11-17T10:24:33+00:00" unixtime="1542450273" sha1="a85657c547f0c2f805d18ff3bfa14d19a832e571" relative="Maps.php"/>
+  <line no="1">
+    <token name="T_OPEN_TAG">&lt;?php</token>
+  </line>
+  <line no="2">
+    <token name="T_DOC_COMMENT">/**</token>
+  </line>
+  <line no="3">
+    <token name="T_DOC_COMMENT"> * Created by PhpStorm.</token>
+  </line>
+  <line no="4">
+    <token name="T_DOC_COMMENT"> * Project: yandex-maps</token>
+  </line>
+  <line no="5">
+    <token name="T_DOC_COMMENT"> * User: Anton Neverov &lt;neverov12@gmail.com&gt;</token>
+  </line>
+  <line no="6">
+    <token name="T_DOC_COMMENT"> * Date: 21.08.2018</token>
+  </line>
+  <line no="7">
+    <token name="T_DOC_COMMENT"> * Time: 20:41</token>
+  </line>
+  <line no="8">
+    <token name="T_DOC_COMMENT"> */</token>
+  </line>
+  <line no="9"/>
+  <line no="10">
+    <token name="T_DOC_COMMENT">/**</token>
+  </line>
+  <line no="11">
+    <token name="T_DOC_COMMENT"> * &#x41E;&#x441;&#x43D;&#x43E;&#x432;&#x43D;&#x43E;&#x439; &#x43A;&#x43B;&#x430;&#x441;&#x441; &#x434;&#x43B;&#x44F; &#x440;&#x430;&#x431;&#x43E;&#x442;&#x44B; &#x441; &#x43A;&#x430;&#x440;&#x442;&#x430;&#x43C;&#x438;</token>
+  </line>
+  <line no="12">
+    <token name="T_DOC_COMMENT"> */</token>
+  </line>
+  <line no="13">
+    <token name="T_CLASS">class</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">Maps</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_EXTENDS">extends</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">Config</token>
+  </line>
+  <line no="14">
+    <token name="T_PHPDOX_OPEN_CURLY">{</token>
+  </line>
+  <line no="15"/>
+  <line no="16">
+    <token name="T_WHITESPACE">    </token>
+    <token name="T_DOC_COMMENT">/**</token>
+  </line>
+  <line no="17">
+    <token name="T_DOC_COMMENT">     * &#x42D;&#x43A;&#x437;&#x435;&#x43C;&#x43F;&#x43B;&#x44F;&#x440; &#x43A;&#x43B;&#x430;&#x441;&#x441;&#x430; Yandex Geo API &#x434;&#x43B;&#x44F; &#x440;&#x430;&#x431;&#x43E;&#x442;&#x44B; &#x441; &#x43F;&#x430;&#x43A;&#x435;&#x442;&#x43E;&#x43C; yandex/geo</token>
+  </line>
+  <line no="18">
+    <token name="T_DOC_COMMENT">     * @var \Yandex\Geo\Api</token>
+  </line>
+  <line no="19">
+    <token name="T_DOC_COMMENT">     */</token>
+  </line>
+  <line no="20">
+    <token name="T_WHITESPACE">    </token>
+    <token name="T_PRIVATE">private</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$maps_api</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="21"/>
+  <line no="22">
+    <token name="T_WHITESPACE">    </token>
+    <token name="T_DOC_COMMENT">/**</token>
+  </line>
+  <line no="23">
+    <token name="T_DOC_COMMENT">     * &#x41F;&#x443;&#x441;&#x442;&#x43E;&#x439; &#x43A;&#x43E;&#x43D;&#x441;&#x442;&#x440;&#x443;&#x43A;&#x442;&#x43E;&#x440;</token>
+  </line>
+  <line no="24">
+    <token name="T_DOC_COMMENT">     */</token>
+  </line>
+  <line no="25">
+    <token name="T_WHITESPACE">    </token>
+    <token name="T_PUBLIC">public</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_FUNCTION">function</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">__construct</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+  </line>
+  <line no="26">
+    <token name="T_WHITESPACE">    </token>
+    <token name="T_PHPDOX_OPEN_CURLY">{</token>
+  </line>
+  <line no="27">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_STRING">parent</token>
+    <token name="T_DOUBLE_COLON">::</token>
+    <token name="T_STRING">__construct</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="28">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_VARIABLE">$this</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">maps_api</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_NEW">new</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_NS_SEPARATOR">\</token>
+    <token name="T_STRING">Yandex</token>
+    <token name="T_NS_SEPARATOR">\</token>
+    <token name="T_STRING">Geo</token>
+    <token name="T_NS_SEPARATOR">\</token>
+    <token name="T_STRING">Api</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="29">
+    <token name="T_WHITESPACE">    </token>
+    <token name="T_PHPDOX_CLOSE_CURLY">}</token>
+  </line>
+  <line no="30"/>
+  <line no="31">
+    <token name="T_WHITESPACE">    </token>
+    <token name="T_DOC_COMMENT">/**</token>
+  </line>
+  <line no="32">
+    <token name="T_DOC_COMMENT">     * &#x414;&#x43E;&#x431;&#x430;&#x432;&#x438;&#x442;&#x44C; &#x43A;&#x430;&#x440;&#x442;&#x443; &#x441; &#x43C;&#x430;&#x441;&#x441;&#x438;&#x432;&#x43E;&#x43C; &#x442;&#x43E;&#x447;&#x435;&#x43A; &#x43D;&#x430; &#x43D;&#x435;&#x439;</token>
+  </line>
+  <line no="33">
+    <token name="T_DOC_COMMENT">     * $array[] &#x42D;&#x442;&#x43E; &#x43C;&#x430;&#x441;&#x438;&#x432; &#x43C;&#x430;&#x441;&#x438;&#x432;&#x43E;&#x432; &#x442;&#x43E;&#x447;&#x435;&#x43A;</token>
+  </line>
+  <line no="34">
+    <token name="T_DOC_COMMENT">     *  $array[]['address'] &#x410;&#x434;&#x440;&#x435;&#x441;</token>
+  </line>
+  <line no="35">
+    <token name="T_DOC_COMMENT">     *  $array[]['persons'] &#x41A;&#x43E;&#x43D;&#x442;&#x430;&#x43A;&#x442;&#x43D;&#x44B;&#x435; &#x43B;&#x438;&#x446;&#x430;</token>
+  </line>
+  <line no="36">
+    <token name="T_DOC_COMMENT">     *  $array[]['description'] &#x41B;&#x44E;&#x431;&#x43E;&#x435; &#x43E;&#x43F;&#x438;&#x441;&#x430;&#x43D;&#x438;&#x435;</token>
+  </line>
+  <line no="37">
+    <token name="T_DOC_COMMENT">     * &#x415;&#x441;&#x43B;&#x438; &#x432; &#x43C;&#x430;&#x441;&#x441;&#x438;&#x432;&#x435; $array &#x442;&#x43E;&#x43B;&#x44C;&#x43A;&#x43E; 1 &#x43E;&#x431;&#x44A;&#x435;&#x43A;&#x442;, &#x442;&#x43E; &#x43E;&#x43D; &#x434;&#x43E;&#x431;&#x430;&#x432;&#x43B;&#x44F;&#x435;&#x442;&#x441;&#x44F; &#x441;&#x43E; &#x432;&#x441;&#x435;&#x43C;&#x438; &#x434;&#x430;&#x43D;&#x43D;&#x44B;&#x43C;&#x438; &#x432; &#x43A;&#x430;&#x436;&#x434;&#x443;&#x44E; &#x43A;&#x43E;&#x43B;&#x43E;&#x43D;&#x43A;&#x443; + JSON &#x442;&#x43E;&#x447;&#x43A;&#x438; &#x432; locations. &#x415;&#x441;&#x43B;&#x438; &#x436;&#x435; &#x442;&#x43E;&#x447;&#x435;&#x43A; &#x431;&#x43E;&#x43B;&#x44C;&#x448;&#x435; &#x43E;&#x434;&#x43D;&#x43E;&#x439;, &#x442;&#x43E;&#x433;&#x434;&#x430; &#x432;&#x435;&#x441;&#x44C; $array &#x43A;&#x43E;&#x43D;&#x432;&#x435;&#x440;&#x442;&#x438;&#x440;&#x443;&#x435;&#x442;&#x441;&#x44F; &#x432; JSON &#x438; &#x432;&#x441;&#x451; &#x44D;&#x442;&#x43E; &#x43A;&#x43B;&#x430;&#x434;&#x451;&#x442;&#x441;&#x44F; &#x432; &#x43A;&#x43E;&#x43B;&#x43E;&#x43D;&#x43A;&#x443; locations. &#x42D;&#x442;&#x43E; &#x441;&#x434;&#x435;&#x43B;&#x430;&#x43D;&#x43E; &#x434;&#x43B;&#x44F; &#x442;&#x43E;&#x433;&#x43E;, &#x447;&#x442;&#x43E;&#x431;&#x44B; &#x438;&#x437;&#x431;&#x435;&#x436;&#x430;&#x442;&#x44C; &#x43F;&#x43E;&#x432;&#x442;&#x43E;&#x440;&#x435;&#x43D;&#x438;&#x439; &#x432; &#x434;&#x43E;&#x431;&#x430;&#x432;&#x43B;&#x435;&#x43D;&#x438;&#x438; &#x43D;&#x43E;&#x432;&#x44B;&#x445; &#x442;&#x43E;&#x447;&#x435;&#x43A; &#x447;&#x435;&#x440;&#x435;&#x437; API &#x438; &#x438;&#x441;&#x43A;&#x430;&#x442;&#x44C; &#x434;&#x43E;&#x431;&#x430;&#x432;&#x43B;&#x435;&#x43D;&#x43D;&#x44B;&#x435; &#x442;&#x43E;&#x447;&#x43A;&#x438; &#x43F;&#x43E; &#x430;&#x434;&#x440;&#x435;&#x441;&#x443;, &#x43D;&#x430;&#x437;&#x432;&#x430;&#x43D;&#x438;&#x44E; &#x438; &#x43E;&#x43F;&#x438;&#x441;&#x430;&#x43D;&#x438;&#x44E;.</token>
+  </line>
+  <line no="38">
+    <token name="T_DOC_COMMENT">     * @param array $array &#x41C;&#x430;&#x441;&#x441;&#x438;&#x432; &#x442;&#x43E;&#x447;&#x435;&#x43A; &#x43F;&#x430;&#x440;&#x430;&#x43C;&#x435;&#x442;&#x440;&#x43E;&#x432; (&#x441;&#x43C;. &#x432;&#x44B;&#x448;&#x435;)</token>
+  </line>
+  <line no="39">
+    <token name="T_DOC_COMMENT">     * @return bool|int FALSE &#x43F;&#x440;&#x438; &#x43E;&#x448;&#x438;&#x431;&#x43A;&#x435; &#x434;&#x43E;&#x431;&#x430;&#x432;&#x43B;&#x435;&#x43D;&#x438;&#x44F;, &#x438;&#x43D;&#x430;&#x447;&#x435; - ID &#x43D;&#x43E;&#x432;&#x43E;&#x439; &#x43A;&#x430;&#x440;&#x442;&#x44B;</token>
+  </line>
+  <line no="40">
+    <token name="T_DOC_COMMENT">     */</token>
+  </line>
+  <line no="41">
+    <token name="T_WHITESPACE">    </token>
+    <token name="T_PUBLIC">public</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_FUNCTION">function</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">Add</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_ARRAY">array</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$array</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+  </line>
+  <line no="42">
+    <token name="T_WHITESPACE">    </token>
+    <token name="T_PHPDOX_OPEN_CURLY">{</token>
+  </line>
+  <line no="43">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_IF">if</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_STRING">count</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_VARIABLE">$array</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_IS_EQUAL">==</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_LNUMBER">1</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_OPEN_CURLY">{</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_COMMENT">//&#x415;&#x441;&#x43B;&#x438; &#x432; &#x43C;&#x430;&#x441;&#x441;&#x438;&#x432;&#x435; &#x442;&#x43E;&#x43B;&#x44C;&#x43A;&#x43E; 1 &#x44D;&#x43B;&#x435;&#x43C;&#x435;&#x43D;&#x442;, &#x442;&#x43E; &#x43D;&#x443;&#x436;&#x43D;&#x43E; &#x43F;&#x43E;&#x43B;&#x443;&#x447;&#x438;&#x442;&#x44C; &#x435;&#x433;&#x43E; &#x434;&#x430;&#x43D;&#x43D;&#x44B;&#x435;</token>
+  </line>
+  <line no="44">
+    <token name="T_WHITESPACE">            </token>
+    <token name="T_VARIABLE">$address</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">mysqli_escape_string</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_VARIABLE">$this</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">mysqli</token>
+    <token name="T_PHPDOX_COMMA">,</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$array</token>
+    <token name="T_PHPDOX_OPEN_SQUARE">[</token>
+    <token name="T_LNUMBER">0</token>
+    <token name="T_PHPDOX_CLOSE_SQUARE">]</token>
+    <token name="T_PHPDOX_OPEN_SQUARE">[</token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">'address'</token>
+    <token name="T_PHPDOX_CLOSE_SQUARE">]</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="45">
+    <token name="T_WHITESPACE">            </token>
+    <token name="T_VARIABLE">$name</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">mysqli_escape_string</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_VARIABLE">$this</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">mysqli</token>
+    <token name="T_PHPDOX_COMMA">,</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$array</token>
+    <token name="T_PHPDOX_OPEN_SQUARE">[</token>
+    <token name="T_LNUMBER">0</token>
+    <token name="T_PHPDOX_CLOSE_SQUARE">]</token>
+    <token name="T_PHPDOX_OPEN_SQUARE">[</token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">'persons'</token>
+    <token name="T_PHPDOX_CLOSE_SQUARE">]</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="46">
+    <token name="T_WHITESPACE">            </token>
+    <token name="T_VARIABLE">$description</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">mysqli_escape_string</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_VARIABLE">$this</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">mysqli</token>
+    <token name="T_PHPDOX_COMMA">,</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$array</token>
+    <token name="T_PHPDOX_OPEN_SQUARE">[</token>
+    <token name="T_LNUMBER">0</token>
+    <token name="T_PHPDOX_CLOSE_SQUARE">]</token>
+    <token name="T_PHPDOX_OPEN_SQUARE">[</token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">'description'</token>
+    <token name="T_PHPDOX_CLOSE_SQUARE">]</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="47">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_PHPDOX_CLOSE_CURLY">}</token>
+  </line>
+  <line no="48">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_VARIABLE">$array</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">mysqli_escape_string</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_VARIABLE">$this</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">mysqli</token>
+    <token name="T_PHPDOX_COMMA">,</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">json_encode</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_VARIABLE">$array</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_COMMENT">//&#x412; &#x43B;&#x44E;&#x431;&#x43E;&#x43C; &#x441;&#x43B;&#x443;&#x447;&#x430;&#x435;, &#x434;&#x43E;&#x431;&#x430;&#x432;&#x43B;&#x44F;&#x435;&#x43C; &#x432; JSON &#x432;&#x435;&#x441;&#x44C; &#x43C;&#x430;&#x441;&#x441;&#x438;&#x432;</token>
+  </line>
+  <line no="49"/>
+  <line no="50">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_IF">if</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_PHPDOX_EXCLAMATION_MARK">!</token>
+    <token name="T_EMPTY">empty</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_VARIABLE">$address</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_OPEN_CURLY">{</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_COMMENT">//&#x415;&#x441;&#x43B;&#x438; &#x432; &#x43C;&#x430;&#x441;&#x441;&#x438;&#x432;&#x435; &#x431;&#x44B;&#x43B; &#x442;&#x43E;&#x43B;&#x44C;&#x43A;&#x43E; 1 &#x44D;&#x43B;&#x435;&#x43C;&#x435;&#x43D;&#x442;, &#x442;&#x43E; &#x434;&#x43E;&#x431;&#x430;&#x432;&#x43B;&#x44F;&#x435;&#x43C; &#x442;&#x430;&#x43A; &#x436;&#x435; &#x438; &#x434;&#x43E;&#x43F;&#x43E;&#x43B;&#x43D;&#x438;&#x442;&#x435;&#x43B;&#x44C;&#x43D;&#x44B;&#x435; &#x434;&#x430;&#x43D;&#x43D;&#x44B;&#x435;</token>
+  </line>
+  <line no="51">
+    <token name="T_WHITESPACE">            </token>
+    <token name="T_VARIABLE">$result</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$this</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">mysqli</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">query</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_PHPDOX_DOUBLE_QUOTES">"</token>
+    <token name="T_ENCAPSED_AND_WHITESPACE">INSERT INTO maps (locations, address, name, description) VALUES ('</token>
+    <token name="T_VARIABLE">$array</token>
+    <token name="T_ENCAPSED_AND_WHITESPACE">', '</token>
+    <token name="T_VARIABLE">$address</token>
+    <token name="T_ENCAPSED_AND_WHITESPACE">', '</token>
+    <token name="T_VARIABLE">$name</token>
+    <token name="T_ENCAPSED_AND_WHITESPACE">', '</token>
+    <token name="T_VARIABLE">$description</token>
+    <token name="T_ENCAPSED_AND_WHITESPACE">')</token>
+    <token name="T_PHPDOX_DOUBLE_QUOTES">"</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="52">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_PHPDOX_CLOSE_CURLY">}</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_ELSE">else</token>
+    <token name="T_PHPDOX_OPEN_CURLY">{</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_COMMENT">//&#x418;&#x43D;&#x430;&#x447;&#x435; &#x43F;&#x440;&#x43E;&#x441;&#x442;&#x43E; &#x43A;&#x43B;&#x430;&#x434;&#x451;&#x43C; &#x432;&#x441;&#x451;, &#x447;&#x442;&#x43E; &#x435;&#x441;&#x442;&#x44C; &#x432; JSON &#x432; locations</token>
+  </line>
+  <line no="53">
+    <token name="T_WHITESPACE">            </token>
+    <token name="T_VARIABLE">$result</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$this</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">mysqli</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">query</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_PHPDOX_DOUBLE_QUOTES">"</token>
+    <token name="T_ENCAPSED_AND_WHITESPACE">INSERT INTO maps (locations) VALUES ('</token>
+    <token name="T_VARIABLE">$array</token>
+    <token name="T_ENCAPSED_AND_WHITESPACE">')</token>
+    <token name="T_PHPDOX_DOUBLE_QUOTES">"</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="54">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_PHPDOX_CLOSE_CURLY">}</token>
+  </line>
+  <line no="55"/>
+  <line no="56">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_IF">if</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_VARIABLE">$result</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_OPEN_CURLY">{</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_COMMENT">//&#x415;&#x441;&#x43B;&#x438; &#x432;&#x441;&#x451; &#x443;&#x441;&#x43F;&#x435;&#x448;&#x43D;&#x43E;</token>
+  </line>
+  <line no="57">
+    <token name="T_WHITESPACE">            </token>
+    <token name="T_RETURN">return</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$this</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">mysqli</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">insert_id</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_COMMENT">//&#x412;&#x43E;&#x437;&#x432;&#x440;&#x430;&#x449;&#x430;&#x435;&#x43C; ID &#x43D;&#x43E;&#x432;&#x43E;&#x439; &#x43A;&#x430;&#x440;&#x442;&#x44B;</token>
+  </line>
+  <line no="58">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_PHPDOX_CLOSE_CURLY">}</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_ELSE">else</token>
+    <token name="T_PHPDOX_OPEN_CURLY">{</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_COMMENT">//&#x418;&#x43D;&#x430;&#x447;&#x435;</token>
+  </line>
+  <line no="59">
+    <token name="T_WHITESPACE">            </token>
+    <token name="T_RETURN">return</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">false</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_COMMENT">//&#x412;&#x43E;&#x437;&#x432;&#x440;&#x430;&#x449;&#x430;&#x435;&#x43C; false</token>
+  </line>
+  <line no="60">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_PHPDOX_CLOSE_CURLY">}</token>
+  </line>
+  <line no="61"/>
+  <line no="62">
+    <token name="T_WHITESPACE">    </token>
+    <token name="T_PHPDOX_CLOSE_CURLY">}</token>
+  </line>
+  <line no="63"/>
+  <line no="64">
+    <token name="T_WHITESPACE">    </token>
+    <token name="T_DOC_COMMENT">/**</token>
+  </line>
+  <line no="65">
+    <token name="T_DOC_COMMENT">     * &#x41F;&#x43E;&#x43B;&#x443;&#x447;&#x435;&#x43D;&#x438;&#x435; &#x43C;&#x430;&#x441;&#x441;&#x438;&#x432;&#x430; &#x43A;&#x430;&#x440;&#x442;&#x44B; &#x43F;&#x43E; &#x435;&#x451; ID</token>
+  </line>
+  <line no="66">
+    <token name="T_DOC_COMMENT">     * @param int $id ID &#x43A;&#x430;&#x440;&#x442;&#x44B; &#x43F;&#x43E; &#x431;&#x430;&#x437;&#x435;</token>
+  </line>
+  <line no="67">
+    <token name="T_DOC_COMMENT">     * @return bool|array FALSE, &#x435;&#x441;&#x43B;&#x438; &#x43F;&#x440;&#x43E;&#x438;&#x437;&#x43E;&#x448;&#x43B;&#x430; &#x43E;&#x448;&#x438;&#x431;&#x43A;&#x430; &#x438;&#x43B;&#x438; &#x43A;&#x430;&#x440;&#x442;&#x44B; &#x43D;&#x435; &#x441;&#x449;&#x443;&#x435;&#x442;&#x441;&#x432;&#x443;&#x435;&#x442;, &#x435;&#x441;&#x43B;&#x438; &#x432;&#x441;&#x451; &#x432; &#x43F;&#x43E;&#x440;&#x44F;&#x434;&#x43A;&#x435; - &#x432;&#x440;&#x43D;&#x451;&#x442;&#x441;&#x44F; &#x43C;&#x430;&#x441;&#x441;&#x438;&#x432; &#x442;&#x43E;&#x447;&#x435;&#x43A;, &#x430;&#x43D;&#x430;&#x43B;&#x43E;&#x433;&#x438;&#x447;&#x43D;&#x44B;&#x439; &#x442;&#x43E;&#x43C;&#x443;, &#x447;&#x442;&#x43E; &#x43F;&#x435;&#x440;&#x435;&#x434;&#x430;&#x451;&#x442;&#x441;&#x44F; &#x432; $this-&gt;Add().</token>
+  </line>
+  <line no="68">
+    <token name="T_DOC_COMMENT">     */</token>
+  </line>
+  <line no="69">
+    <token name="T_WHITESPACE">    </token>
+    <token name="T_PUBLIC">public</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_FUNCTION">function</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">Get</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_STRING">int</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$id</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+  </line>
+  <line no="70">
+    <token name="T_WHITESPACE">    </token>
+    <token name="T_PHPDOX_OPEN_CURLY">{</token>
+  </line>
+  <line no="71">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_VARIABLE">$id</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">mysqli_real_escape_string</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_VARIABLE">$this</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">mysqli</token>
+    <token name="T_PHPDOX_COMMA">,</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$id</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="72"/>
+  <line no="73">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_VARIABLE">$result</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$this</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">mysqli</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">query</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_PHPDOX_DOUBLE_QUOTES">"</token>
+    <token name="T_ENCAPSED_AND_WHITESPACE">SELECT locations FROM maps WHERE id = '</token>
+    <token name="T_VARIABLE">$id</token>
+    <token name="T_ENCAPSED_AND_WHITESPACE">' LIMIT 1</token>
+    <token name="T_PHPDOX_DOUBLE_QUOTES">"</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_COMMENT">//&#x41F;&#x44B;&#x442;&#x430;&#x435;&#x43C;&#x441;&#x44F; &#x43F;&#x43E;&#x43B;&#x443;&#x447;&#x438;&#x442;&#x44C; &#x434;&#x430;&#x43D;&#x43D;&#x44B;&#x435; &#x43A;&#x430;&#x440;&#x442;&#x44B; &#x43F;&#x43E; ID</token>
+  </line>
+  <line no="74"/>
+  <line no="75">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_IF">if</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_STRING">mysqli_num_rows</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_VARIABLE">$result</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_GT">&gt;</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_LNUMBER">0</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_OPEN_CURLY">{</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_COMMENT">//&#x415;&#x441;&#x43B;&#x438; &#x43F;&#x43E;&#x43B;&#x443;&#x447;&#x438;&#x43B;&#x43E;&#x441;&#x44C;</token>
+  </line>
+  <line no="76">
+    <token name="T_WHITESPACE">            </token>
+    <token name="T_VARIABLE">$result</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">mysqli_fetch_assoc</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_VARIABLE">$result</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="77">
+    <token name="T_WHITESPACE">            </token>
+    <token name="T_RETURN">return</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">json_decode</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_VARIABLE">$result</token>
+    <token name="T_PHPDOX_OPEN_SQUARE">[</token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">'locations'</token>
+    <token name="T_PHPDOX_CLOSE_SQUARE">]</token>
+    <token name="T_PHPDOX_COMMA">,</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">true</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_COMMENT">//&#x412;&#x43E;&#x437;&#x432;&#x440;&#x430;&#x449;&#x430;&#x435;&#x43C; &#x43C;&#x430;&#x441;&#x441;&#x438;&#x432;, &#x441;&#x43E;&#x437;&#x434;&#x430;&#x43D;&#x43D;&#x44B;&#x439; &#x438;&#x437; JSON &#x43F;&#x43E;&#x43B;&#x443;&#x447;&#x435;&#x43D;&#x43D;&#x43E;&#x439; &#x43A;&#x430;&#x440;&#x442;&#x44B;</token>
+  </line>
+  <line no="78">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_PHPDOX_CLOSE_CURLY">}</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_ELSE">else</token>
+    <token name="T_PHPDOX_OPEN_CURLY">{</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_COMMENT">//&#x418;&#x43D;&#x430;&#x447;&#x435;</token>
+  </line>
+  <line no="79">
+    <token name="T_WHITESPACE">            </token>
+    <token name="T_RETURN">return</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">false</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_COMMENT">//&#x412;&#x43E;&#x437;&#x432;&#x440;&#x430;&#x449;&#x430;&#x435;&#x43C; false</token>
+  </line>
+  <line no="80">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_PHPDOX_CLOSE_CURLY">}</token>
+  </line>
+  <line no="81">
+    <token name="T_WHITESPACE">    </token>
+    <token name="T_PHPDOX_CLOSE_CURLY">}</token>
+  </line>
+  <line no="82"/>
+  <line no="83">
+    <token name="T_WHITESPACE">    </token>
+    <token name="T_DOC_COMMENT">/**</token>
+  </line>
+  <line no="84">
+    <token name="T_DOC_COMMENT">     * &#x41F;&#x43E;&#x43B;&#x443;&#x447;&#x435;&#x43D;&#x438;&#x435; &#x432;&#x441;&#x435;&#x445; &#x422;&#x41E;&#x427;&#x415;&#x41A; &#x438;&#x437; &#x431;&#x430;&#x437;&#x44B; &#x434;&#x430;&#x43D;&#x43D;&#x44B;&#x445; &#x432; &#x43E;&#x434;&#x43D;&#x43E;&#x43C; &#x43C;&#x430;&#x441;&#x441;&#x438;&#x432;&#x435;</token>
+  </line>
+  <line no="85">
+    <token name="T_DOC_COMMENT">     * @return array|bool FALSE &#x435;&#x441;&#x43B;&#x438; &#x43E;&#x448;&#x438;&#x431;&#x43A;&#x430;, &#x438;&#x43D;&#x430;&#x447;&#x435; - &#x43C;&#x430;&#x441;&#x441;&#x438;&#x432; &#x412;&#x421;&#x415;&#x425; &#x442;&#x43E;&#x447;&#x435;&#x43A;</token>
+  </line>
+  <line no="86">
+    <token name="T_DOC_COMMENT">     */</token>
+  </line>
+  <line no="87">
+    <token name="T_WHITESPACE">    </token>
+    <token name="T_PUBLIC">public</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_FUNCTION">function</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">GetAll</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+  </line>
+  <line no="88">
+    <token name="T_WHITESPACE">    </token>
+    <token name="T_PHPDOX_OPEN_CURLY">{</token>
+  </line>
+  <line no="89">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_VARIABLE">$result</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$this</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">mysqli</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">query</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">"SELECT locations FROM maps WHERE address IS NOT NULL GROUP BY address"</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_COMMENT">//&#x41F;&#x43E;&#x43B;&#x443;&#x447;&#x430;&#x435;&#x43C; &#x432;&#x441;&#x435; &#x43A;&#x430;&#x440;&#x442;&#x44B; &#x438;&#x437; &#x43C;&#x430;&#x441;&#x441;&#x438;&#x432;&#x430;</token>
+  </line>
+  <line no="90"/>
+  <line no="91">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_IF">if</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_STRING">mysqli_num_rows</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_VARIABLE">$result</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_GT">&gt;</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_LNUMBER">0</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_OPEN_CURLY">{</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_COMMENT">//&#x415;&#x441;&#x43B;&#x438; &#x43F;&#x43E;&#x43B;&#x443;&#x447;&#x438;&#x43B;&#x438; &#x445;&#x43E;&#x442;&#x44F;-&#x431;&#x44B; &#x43E;&#x434;&#x43D;&#x443; &#x43A;&#x430;&#x440;&#x442;&#x443;</token>
+  </line>
+  <line no="92"/>
+  <line no="93">
+    <token name="T_WHITESPACE">            </token>
+    <token name="T_VARIABLE">$map</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_OPEN_SQUARE">[</token>
+    <token name="T_PHPDOX_CLOSE_SQUARE">]</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_COMMENT">//&#x421;&#x43E;&#x437;&#x434;&#x430;&#x451;&#x43C; &#x43C;&#x430;&#x441;&#x441;&#x438;&#x432;</token>
+  </line>
+  <line no="94"/>
+  <line no="95">
+    <token name="T_WHITESPACE">            </token>
+    <token name="T_WHILE">while</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_VARIABLE">$row</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">mysqli_fetch_assoc</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_VARIABLE">$result</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_OPEN_CURLY">{</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_COMMENT">//&#x41E;&#x431;&#x44A;&#x435;&#x434;&#x435;&#x43D;&#x44F;&#x435;&#x43C; &#x43A;&#x430;&#x436;&#x434;&#x443;&#x44E; &#x441;&#x442;&#x440;&#x43E;&#x43A;&#x443; &#x441; &#x43C;&#x430;&#x441;&#x441;&#x438;&#x432;&#x43E;&#x43C; $map</token>
+  </line>
+  <line no="96">
+    <token name="T_WHITESPACE">                </token>
+    <token name="T_VARIABLE">$row</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">json_decode</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_VARIABLE">$row</token>
+    <token name="T_PHPDOX_OPEN_SQUARE">[</token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">'locations'</token>
+    <token name="T_PHPDOX_CLOSE_SQUARE">]</token>
+    <token name="T_PHPDOX_COMMA">,</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">true</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="97">
+    <token name="T_WHITESPACE">                </token>
+    <token name="T_VARIABLE">$map</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">array_merge</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_VARIABLE">$map</token>
+    <token name="T_PHPDOX_COMMA">,</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$row</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="98">
+    <token name="T_WHITESPACE">            </token>
+    <token name="T_PHPDOX_CLOSE_CURLY">}</token>
+  </line>
+  <line no="99"/>
+  <line no="100">
+    <token name="T_WHITESPACE">            </token>
+    <token name="T_RETURN">return</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$map</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_COMMENT">//&#x412;&#x43E;&#x437;&#x432;&#x440;&#x430;&#x449;&#x430;&#x435;&#x43C; &#x43C;&#x430;&#x441;&#x441;&#x438;&#x432;</token>
+  </line>
+  <line no="101"/>
+  <line no="102">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_PHPDOX_CLOSE_CURLY">}</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_ELSE">else</token>
+    <token name="T_PHPDOX_OPEN_CURLY">{</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_COMMENT">//&#x418;&#x43D;&#x430;&#x447;&#x435;</token>
+  </line>
+  <line no="103">
+    <token name="T_WHITESPACE">            </token>
+    <token name="T_RETURN">return</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">false</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_COMMENT">//&#x412;&#x43E;&#x437;&#x432;&#x440;&#x430;&#x449;&#x430;&#x435;&#x43C; false</token>
+  </line>
+  <line no="104">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_PHPDOX_CLOSE_CURLY">}</token>
+  </line>
+  <line no="105">
+    <token name="T_WHITESPACE">    </token>
+    <token name="T_PHPDOX_CLOSE_CURLY">}</token>
+  </line>
+  <line no="106"/>
+  <line no="107">
+    <token name="T_WHITESPACE">    </token>
+    <token name="T_DOC_COMMENT">/**</token>
+  </line>
+  <line no="108">
+    <token name="T_DOC_COMMENT">     * &#x421;&#x43E;&#x437;&#x434;&#x430;&#x451;&#x442; &#x437;&#x43D;&#x430;&#x447;&#x435;&#x43D;&#x438;&#x44F; lat &#x438; long &#x434;&#x43B;&#x44F; &#x443;&#x43A;&#x430;&#x437;&#x430;&#x43D;&#x43D;&#x43E;&#x439; &#x442;&#x43E;&#x447;&#x43A;&#x438;. &#x415;&#x441;&#x43B;&#x438; &#x432; &#x431;&#x430;&#x437;&#x435; &#x435;&#x441;&#x442;&#x44C; &#x443;&#x436;&#x435; &#x442;&#x430;&#x43A;&#x430;&#x44F; &#x43A;&#x430;&#x440;&#x442;&#x430; &#x441; &#x442;&#x435;&#x43C;&#x438; &#x436;&#x435; address, persons &#x438; description - &#x432;&#x435;&#x440;&#x43D;&#x451;&#x442; &#x435;&#x451; ID</token>
+  </line>
+  <line no="109">
+    <token name="T_DOC_COMMENT">     * @param array $point &#x41C;&#x430;&#x441;&#x441;&#x438;&#x432;, &#x441;&#x43E;&#x434;&#x435;&#x440;&#x436;&#x430;&#x449;&#x438;&#x439; &#x434;&#x430;&#x43D;&#x43D;&#x44B;&#x435; address, persons, description</token>
+  </line>
+  <line no="110">
+    <token name="T_DOC_COMMENT">     * @return array|int &#x413;&#x43E;&#x442;&#x43E;&#x432;&#x44B;&#x439; &#x43C;&#x430;&#x441;&#x441;&#x438;&#x432;, &#x43A;&#x43E;&#x442;&#x43E;&#x440;&#x44B;&#x439; &#x43C;&#x43E;&#x436;&#x43D;&#x43E; &#x434;&#x43E;&#x431;&#x430;&#x432;&#x438;&#x442;&#x44C; &#x447;&#x435;&#x440;&#x435;&#x437; $this-&gt;Add() &#x438;&#x43B;&#x438; ID &#x443;&#x436;&#x435; &#x441;&#x449;&#x443;&#x435;&#x442;&#x441;&#x432;&#x443;&#x44E;&#x449;&#x435;&#x439; &#x43A;&#x430;&#x440;&#x442;&#x44B;</token>
+  </line>
+  <line no="111">
+    <token name="T_DOC_COMMENT">     * @throws \Yandex\Geo\Exception</token>
+  </line>
+  <line no="112">
+    <token name="T_DOC_COMMENT">     */</token>
+  </line>
+  <line no="113">
+    <token name="T_WHITESPACE">    </token>
+    <token name="T_PUBLIC">public</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_FUNCTION">function</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">GeneratePoint</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_ARRAY">array</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$point</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+  </line>
+  <line no="114">
+    <token name="T_WHITESPACE">    </token>
+    <token name="T_PHPDOX_OPEN_CURLY">{</token>
+  </line>
+  <line no="115">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_COMMENT">//&#x41F;&#x43E;&#x43B;&#x443;&#x447;&#x430;&#x435;&#x43C; &#x434;&#x430;&#x43D;&#x43D;&#x44B;&#x435; &#x438;&#x437; &#x442;&#x43E;&#x447;&#x43A;&#x438;</token>
+  </line>
+  <line no="116">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_VARIABLE">$address</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">mysqli_escape_string</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_VARIABLE">$this</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">mysqli</token>
+    <token name="T_PHPDOX_COMMA">,</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$point</token>
+    <token name="T_PHPDOX_OPEN_SQUARE">[</token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">'address'</token>
+    <token name="T_PHPDOX_CLOSE_SQUARE">]</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="117">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_VARIABLE">$persons</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">mysqli_escape_string</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_VARIABLE">$this</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">mysqli</token>
+    <token name="T_PHPDOX_COMMA">,</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$point</token>
+    <token name="T_PHPDOX_OPEN_SQUARE">[</token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">'persons'</token>
+    <token name="T_PHPDOX_CLOSE_SQUARE">]</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="118">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_VARIABLE">$description</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">mysqli_escape_string</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_VARIABLE">$this</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">mysqli</token>
+    <token name="T_PHPDOX_COMMA">,</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$point</token>
+    <token name="T_PHPDOX_OPEN_SQUARE">[</token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">'description'</token>
+    <token name="T_PHPDOX_CLOSE_SQUARE">]</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="119"/>
+  <line no="120">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_VARIABLE">$repeat</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$this</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">mysqli</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">query</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_PHPDOX_DOUBLE_QUOTES">"</token>
+    <token name="T_ENCAPSED_AND_WHITESPACE">SELECT id FROM maps WHERE address = '</token>
+    <token name="T_VARIABLE">$address</token>
+    <token name="T_ENCAPSED_AND_WHITESPACE">' AND name = '</token>
+    <token name="T_VARIABLE">$persons</token>
+    <token name="T_ENCAPSED_AND_WHITESPACE">' AND description = '</token>
+    <token name="T_VARIABLE">$description</token>
+    <token name="T_ENCAPSED_AND_WHITESPACE">' LIMIT 1</token>
+    <token name="T_PHPDOX_DOUBLE_QUOTES">"</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_COMMENT">//&#x41F;&#x440;&#x43E;&#x432;&#x435;&#x440;&#x44F;&#x435;&#x43C;, &#x435;&#x441;&#x442;&#x44C; &#x43B;&#x438; &#x443;&#x436;&#x435; &#x430;&#x43D;&#x430;&#x43B;&#x43E;&#x433; &#x44D;&#x442;&#x43E;&#x439; &#x442;&#x43E;&#x447;&#x43A;&#x438;</token>
+  </line>
+  <line no="121"/>
+  <line no="122">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_IF">if</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_STRING">mysqli_num_rows</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_VARIABLE">$repeat</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_GT">&gt;</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_LNUMBER">0</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_OPEN_CURLY">{</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_COMMENT">//&#x415;&#x441;&#x43B;&#x438; &#x435;&#x441;&#x442;&#x44C;</token>
+  </line>
+  <line no="123">
+    <token name="T_WHITESPACE">            </token>
+    <token name="T_VARIABLE">$repeat</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">mysqli_fetch_assoc</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_VARIABLE">$repeat</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="124">
+    <token name="T_WHITESPACE">            </token>
+    <token name="T_RETURN">return</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$repeat</token>
+    <token name="T_PHPDOX_OPEN_SQUARE">[</token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">'id'</token>
+    <token name="T_PHPDOX_CLOSE_SQUARE">]</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_COMMENT">//&#x412;&#x43E;&#x437;&#x432;&#x440;&#x430;&#x449;&#x430;&#x435;&#x43C; &#x435;&#x433;&#x43E; ID</token>
+  </line>
+  <line no="125">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_PHPDOX_CLOSE_CURLY">}</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_ELSE">else</token>
+    <token name="T_PHPDOX_OPEN_CURLY">{</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_COMMENT">//&#x418;&#x43D;&#x430;&#x447;&#x435;</token>
+  </line>
+  <line no="126">
+    <token name="T_WHITESPACE">            </token>
+    <token name="T_VARIABLE">$location</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$this</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">maps_api</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">setQuery</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_VARIABLE">$point</token>
+    <token name="T_PHPDOX_OPEN_SQUARE">[</token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">'address'</token>
+    <token name="T_PHPDOX_CLOSE_SQUARE">]</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">setLimit</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_LNUMBER">1</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">load</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">getResponse</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">getList</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_OPEN_SQUARE">[</token>
+    <token name="T_LNUMBER">0</token>
+    <token name="T_PHPDOX_CLOSE_SQUARE">]</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_COMMENT">//&#x418;&#x449;&#x435;&#x43C; &#x43F;&#x43E; &#x43A;&#x430;&#x440;&#x442;&#x430;&#x43C; &#x442;&#x43E;&#x447;&#x43A;&#x443; &#x441; &#x443;&#x43A;&#x430;&#x437;&#x430;&#x43D;&#x43D;&#x44B;&#x43C; &#x430;&#x434;&#x440;&#x435;&#x441;&#x43E;&#x43C;</token>
+  </line>
+  <line no="127"/>
+  <line no="128">
+    <token name="T_WHITESPACE">            </token>
+    <token name="T_COMMENT">//&#x414;&#x43E;&#x431;&#x430;&#x432;&#x43B;&#x44F;&#x435;&#x43C; &#x43A;&#x43E;&#x43E;&#x440;&#x438;&#x434;&#x43D;&#x430;&#x442;&#x44B; &#x43A; &#x442;&#x43E;&#x447;&#x43A;&#x435;</token>
+  </line>
+  <line no="129">
+    <token name="T_WHITESPACE">            </token>
+    <token name="T_VARIABLE">$point</token>
+    <token name="T_PHPDOX_OPEN_SQUARE">[</token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">'lat'</token>
+    <token name="T_PHPDOX_CLOSE_SQUARE">]</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$location</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">getLatitude</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="130">
+    <token name="T_WHITESPACE">            </token>
+    <token name="T_VARIABLE">$point</token>
+    <token name="T_PHPDOX_OPEN_SQUARE">[</token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">'long'</token>
+    <token name="T_PHPDOX_CLOSE_SQUARE">]</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$location</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">getLongitude</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="131"/>
+  <line no="132">
+    <token name="T_WHITESPACE">            </token>
+    <token name="T_RETURN">return</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$point</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_COMMENT">//&#x412;&#x43E;&#x437;&#x432;&#x440;&#x430;&#x449;&#x430;&#x435;&#x43C; &#x442;&#x43E;&#x447;&#x43A;&#x443; &#x441; &#x43A;&#x43E;&#x43E;&#x440;&#x434;&#x438;&#x43D;&#x430;&#x442;&#x430;&#x43C;&#x438;</token>
+  </line>
+  <line no="133">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_PHPDOX_CLOSE_CURLY">}</token>
+  </line>
+  <line no="134"/>
+  <line no="135">
+    <token name="T_WHITESPACE">    </token>
+    <token name="T_PHPDOX_CLOSE_CURLY">}</token>
+  </line>
+  <line no="136"/>
+  <line no="137">
+    <token name="T_WHITESPACE">    </token>
+    <token name="T_DOC_COMMENT">/**</token>
+  </line>
+  <line no="138">
+    <token name="T_DOC_COMMENT">     * &#x414;&#x43E;&#x431;&#x430;&#x432;&#x43B;&#x44F;&#x435;&#x442; &#x43B;&#x44E;&#x431;&#x43E;&#x439; &#x442;&#x435;&#x43A;&#x441;&#x442; &#x43A; &#x43A;&#x430;&#x440;&#x442;&#x435;</token>
+  </line>
+  <line no="139">
+    <token name="T_DOC_COMMENT">     * @param int $id ID &#x43A;&#x430;&#x440;&#x442;&#x44B; &#x43F;&#x43E; &#x431;&#x430;&#x437;&#x435;</token>
+  </line>
+  <line no="140">
+    <token name="T_DOC_COMMENT">     * @param string $text &#x422;&#x435;&#x43A;&#x441;&#x442;, &#x43A;&#x43E;&#x442;&#x43E;&#x440;&#x44B;&#x439; &#x43D;&#x435;&#x43E;&#x431;&#x445;&#x43E;&#x434;&#x438;&#x43C;&#x43E; &#x434;&#x43E;&#x431;&#x430;&#x432;&#x438;&#x442;&#x44C;</token>
+  </line>
+  <line no="141">
+    <token name="T_DOC_COMMENT">     * @return bool &#x423;&#x441;&#x43F;&#x435;&#x448;&#x43D;&#x43E;&#x435; &#x43B;&#x438; &#x434;&#x43E;&#x431;&#x430;&#x432;&#x43B;&#x435;&#x43D;&#x438;&#x435;</token>
+  </line>
+  <line no="142">
+    <token name="T_DOC_COMMENT">     */</token>
+  </line>
+  <line no="143">
+    <token name="T_WHITESPACE">    </token>
+    <token name="T_PUBLIC">public</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_FUNCTION">function</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">AddTextToMap</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_STRING">int</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$id</token>
+    <token name="T_PHPDOX_COMMA">,</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">string</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$text</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_COLON">:</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">bool</token>
+  </line>
+  <line no="144">
+    <token name="T_WHITESPACE">    </token>
+    <token name="T_PHPDOX_OPEN_CURLY">{</token>
+  </line>
+  <line no="145">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_VARIABLE">$id</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">mysqli_escape_string</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_VARIABLE">$this</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">mysqli</token>
+    <token name="T_PHPDOX_COMMA">,</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$id</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="146">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_VARIABLE">$text</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">mysqli_escape_string</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_VARIABLE">$this</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">mysqli</token>
+    <token name="T_PHPDOX_COMMA">,</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$text</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="147"/>
+  <line no="148">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_IF">if</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_VARIABLE">$this</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">mysqli</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">query</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_PHPDOX_DOUBLE_QUOTES">"</token>
+    <token name="T_ENCAPSED_AND_WHITESPACE">UPDATE maps SET text = '</token>
+    <token name="T_VARIABLE">$text</token>
+    <token name="T_ENCAPSED_AND_WHITESPACE">' WHERE id = '</token>
+    <token name="T_VARIABLE">$id</token>
+    <token name="T_ENCAPSED_AND_WHITESPACE">' LIMIT 1</token>
+    <token name="T_PHPDOX_DOUBLE_QUOTES">"</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_OPEN_CURLY">{</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_COMMENT">//&#x415;&#x441;&#x43B;&#x438; &#x443;&#x441;&#x43F;&#x448;&#x43D;&#x43E; &#x434;&#x43E;&#x431;&#x430;&#x432;&#x438;&#x43B;&#x438;</token>
+  </line>
+  <line no="149">
+    <token name="T_WHITESPACE">            </token>
+    <token name="T_RETURN">return</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">true</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_COMMENT">//&#x412;&#x43E;&#x437;&#x432;&#x440;&#x430;&#x449;&#x430;&#x435;&#x43C; TRUE</token>
+  </line>
+  <line no="150">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_PHPDOX_CLOSE_CURLY">}</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_ELSE">else</token>
+    <token name="T_PHPDOX_OPEN_CURLY">{</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_COMMENT">//&#x418;&#x43D;&#x430;&#x447;&#x435;</token>
+  </line>
+  <line no="151">
+    <token name="T_WHITESPACE">            </token>
+    <token name="T_RETURN">return</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">false</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_COMMENT">//&#x412;&#x43E;&#x437;&#x432;&#x440;&#x430;&#x449;&#x430;&#x435;&#x43C; false</token>
+  </line>
+  <line no="152">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_PHPDOX_CLOSE_CURLY">}</token>
+  </line>
+  <line no="153">
+    <token name="T_WHITESPACE">    </token>
+    <token name="T_PHPDOX_CLOSE_CURLY">}</token>
+  </line>
+  <line no="154"/>
+  <line no="155">
+    <token name="T_PHPDOX_CLOSE_CURLY">}</token>
+  </line>
+</source>

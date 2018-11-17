@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="e4d13faa-a6c4-4acd-b6eb-7a23f61557cf" name="Beget - Yandex Maps" url="http://maps.pscripem.beget.tech">
+        <fileTransfer host="pscripem.beget.tech" port="22" rootFolder="/home/p/pscripem/maps.pscripem.beget.tech/public_html" accessType="SFTP">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" shareSSLContext="true" />
+          </advancedOptions>
+          <option name="port" value="22" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

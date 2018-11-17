@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<index xmlns="http://xml.phpdox.net/src" basedir="J:/projects/yandex-maps/engine">
+  <namespace name="">
+    <class name="Config" src="Config.php" description="Класс всех настроек" xml="classes/Config.xml"/>
+    
+  <class name="Maps" src="Maps.php" description="Основной класс для работы с картами" xml="classes/Maps.xml"/></namespace>
+</index>

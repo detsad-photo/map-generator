@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class xmlns="http://xml.phpdox.net/src" full="Maps" namespace="" name="Maps" abstract="false" final="false" start="13" end="155">
+  <file path="J:/projects/yandex-maps/engine" file="Maps.php" realpath="J:/projects/yandex-maps/engine/Maps.php" size="7940" time="2018-11-17T10:24:33+00:00" unixtime="1542450273" sha1="a85657c547f0c2f805d18ff3bfa14d19a832e571" relative="Maps.php"/>
+  <docblock>
+    <description compact="Основной класс для работы с картами"/>
+  </docblock>
+  <extends full="Config" namespace="" name="Config"/>
+  <member name="maps_api" visibility="private" static="false" line="20">
+    <docblock>
+      <description compact="Экземпляр класса Yandex Geo API для работы с пакетом yandex/geo"/>
+      <var type="object">
+        <type full="\Yandex\Geo\Api" namespace="\Yandex\Geo" name="Api"/>
+      </var>
+    </docblock>
+  </member>
+  <constructor name="__construct" start="25" end="29" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="Пустой конструктор"/>
+    </docblock>
+  </constructor>
+  <method name="Add" start="41" end="62" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="Добавить карту с массивом точек на ней $array[] Это масив масивов точек  $array[]['address'] Адрес  $array[]['persons'] Контактные лица  $array[]['description'] Любое описание Если в массиве $array только 1 объект, то он добавляется со всеми данными в каждую колонку + JSON точки в locations. Если же точек больше одной, тогда весь $array конвертируется в JSON и всё это кладётся в колонку locations. Это сделано для того, чтобы избежать повторений в добавлении новых точек через API и искать добавленные точки по адресу, названию и описанию."/>
+      <param description="Массив точек параметров (см. выше)" type="array" variable="$array"/>
+      <return description="FALSE при ошибке добавления, иначе - ID новой карты" type="object">
+        <type full="bool|int" namespace="" name="bool|int"/>
+      </return>
+    </docblock>
+    <parameter name="array" byreference="false" type="array"/>
+    <inline>
+      <comment value="В любом случае, добавляем в JSON весь массив" line="48"/>
+    </inline>
+  </method>
+  <method name="Get" start="69" end="81" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="Получение массива карты по её ID"/>
+      <param description="ID карты по базе" type="int" variable="$id"/>
+      <return description="FALSE, если произошла ошибка или карты не сщуетсвует, если всё в порядке - врнётся массив точек, аналогичный тому, что передаётся в $this-&gt;Add()." type="object">
+        <type full="bool|array" namespace="" name="bool|array"/>
+      </return>
+    </docblock>
+    <parameter name="id" byreference="false" type="int"/>
+    <inline>
+      <comment value="Пытаемся получить данные карты по ID" line="73"/>
+    </inline>
+  </method>
+  <method name="GetAll" start="87" end="105" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="Получение всех ТОЧЕК из базы данных в одном массиве"/>
+      <return description="FALSE если ошибка, иначе - массив ВСЕХ точек" type="object">
+        <type full="array|bool" namespace="" name="array|bool"/>
+      </return>
+    </docblock>
+    <inline>
+      <comment value="Получаем все карты из массива" line="89"/>
+    </inline>
+  </method>
+  <method name="GeneratePoint" start="113" end="135" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="Создаёт значения lat и long для указанной точки. Если в базе есть уже такая карта с теми же address, persons и description - вернёт её ID"/>
+      <param description="Массив, содержащий данные address, persons, description" type="array" variable="$point"/>
+      <return description="Готовый массив, который можно добавить через $this-&gt;Add() или ID уже сщуетсвующей карты" type="object">
+        <type full="array|int" namespace="" name="array|int"/>
+      </return>
+      <throws type="object">
+        <type full="\Yandex\Geo\Exception" namespace="\Yandex\Geo" name="Exception"/>
+      </throws>
+    </docblock>
+    <parameter name="point" byreference="false" type="array"/>
+    <inline>
+      <comment value="Получаем данные из точки" line="115"/>
+      <comment value="Проверяем, есть ли уже аналог этой точки" line="120"/>
+    </inline>
+  </method>
+  <method name="AddTextToMap" start="143" end="153" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="Добавляет любой текст к карте"/>
+      <param description="ID карты по базе" type="int" variable="$id"/>
+      <param description="Текст, который необходимо добавить" type="string" variable="$text"/>
+      <return description="Успешное ли добавление" type="object">
+        <type full="bool" namespace="" name="bool"/>
+      </return>
+    </docblock>
+    <return type="bool" nullable="false"/>
+    <parameter name="id" byreference="false" type="int"/>
+    <parameter name="text" byreference="false" type="string"/>
+  </method>
+  <parent full="Config" namespace="" name="Config">
+    <member name="base_domain" default="'http://maps.pscripem.beget.tech/'" type="string" visibility="public" static="false" line="19">
+    <docblock>
+      <description compact="Базовый домен приложения"/>
+      <var type="string"/>
+    </docblock>
+  </member>
+    <member name="mysqli" default="NULL" visibility="public" static="false" line="46">
+    <docblock>
+      <description compact="Изначально null, но в конструкторе создаётся экземпляр класса /mysqli"/>
+      <var type="object">
+        <type full="mysqli|null" namespace="" name="mysqli|null"/>
+      </var>
+    </docblock>
+  </member>
+    <constructor name="__construct" start="51" end="62" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="Пустой конструктор, в котором создаётся подключение mysqli"/>
+    </docblock>
+  </constructor>
+  </parent>
+</class>
