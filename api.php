@@ -24,7 +24,7 @@ if (!empty($request)) {
     if (!empty($request['description']) AND !empty($request['persons']) AND !empty($request['address'])) {
 
         if (stripos($request['address'], 'Московская') === false) {
-            $point['address'] = 'Московская область, '.$request['address'];
+            $request['address'] = 'Московская область, '.$request['address'];
         }
 
         $map = $maps->GeneratePoint($request);
