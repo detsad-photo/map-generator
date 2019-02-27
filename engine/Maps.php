@@ -123,6 +123,16 @@ class Maps extends Config
             $repeat = mysqli_fetch_assoc($repeat);
             return $repeat['id']; //Возвращаем его ID
         } else{ //Иначе
+
+            if (stripos($point['address'], 'москва') === false AND stripos($point['address'], 'московская') === false) {
+                $point['address'] = 'Москва, ' . $point['address'];
+            } elseif (stripos($point['address'], 'московская') === false) {
+                $point['address'] = 'Московская область, '.$point['address'];
+            }
+
+            $point['address'] = str_replace('(', '', $point['address']);
+            $point['address'] = str_replace(')', '', $point['address']);
+
             $location = $this->maps_api->setQuery($point['address'])->setLimit(1)->load()->getResponse()->getList()[0]; //Ищем по картам точку с указанным адресом
 
             //Добавляем коориднаты к точке

@@ -99,10 +99,10 @@ if (!empty($_GET['id'])) {
         myMap.geoObjects
             <?php foreach ($map as $loc): ?>
             .add(new ymaps.Placemark([<?php echo $loc['lat'] ?>, <?php echo $loc['long'] ?>], {
-                balloonContentHeader: '<?php echo addslashes(str_replace("\n", ' ', $loc['description'])) ?>',
-                balloonContent: '<?php echo addslashes(str_replace("\n", ' ', $loc['persons'])) ?>',
-                balloonContentFooter: '<?php echo addslashes(str_replace("\n", ' ', $loc['address'])) ?>',
-                iconCaption: '<?php echo addslashes(str_replace("\n", ' ', $loc['description'])) ?>'
+                balloonContentHeader: '<?php echo addslashes(str_replace("\n", ' ', (!empty($loc['description']) ? $loc['description'] : ''))) ?>',
+                balloonContent: '<?php echo addslashes(str_replace("\n", ' ', (!empty($loc['persons']) ? $loc['persons'] : ''))) ?>',
+                balloonContentFooter: '<?php echo addslashes(str_replace("\n", ' ', (!empty($loc['address']) ? $loc['address'] : ''))) ?>',
+                iconCaption: '<?php echo addslashes(str_replace("\n", ' ', (!empty($loc['description']) ? $loc['description'] : ''))) ?>'
             }))
             <?php endforeach; ?>;
 
@@ -122,9 +122,9 @@ if (!empty($_GET['id'])) {
 <div id="list">
     <?php foreach ($map as $loc): ?>
         <div class="item" data-lat="<?php echo $loc['lat'] ?>" data-long="<?php echo $loc['long'] ?>">
-            <p><?php echo $loc['description'] ?></p>
-            <p><?php echo $loc['persons'] ?></p>
-            <p><?php echo $loc['address'] ?></p>
+            <p><?php echo (!empty($loc['description'])) ? $loc['description'] : '' ?></p>
+            <p><?php echo (!empty($loc['persons'])) ? $loc['persons'] : '' ?></p>
+            <p><?php echo (!empty($loc['address'])) ? $loc['address'] : '' ?></p>
         </div>
     <?php endforeach; ?>
 </div>

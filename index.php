@@ -36,12 +36,6 @@ if (!empty($_FILES['table'])){
             }
         }
 
-        if (stripos($point['address'], 'Московская') === false) {
-            $point['address'] = 'Московская область, '.$point['address'];
-            $point['address'] = str_replace('(', '', $point['address']);
-            $point['address'] = str_replace(')', '', $point['address']);
-        }
-
         $repeat = false;
         foreach ($points as $temp_point){
             if ($point['address'] == $temp_point['address']){
