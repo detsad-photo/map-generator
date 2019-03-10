@@ -27,17 +27,17 @@ class Config {
      * Логин MySQL
      * @var string
      */
-    private $mysqli_login = "pscripem_maps";
+    private $mysqli_login = "pscripem_s";
     /**
      * Пароль MySQL
      * @var string
      */
-    private $mysqli_password = "WJr04ci&";
+    private $mysqli_password = "AN&4hX8C";
     /**
      * База данных MySQL
      * @var string
      */
-    private $mysqli_database = "pscripem_maps";
+    private $mysqli_database = "pscripem_s";
 
     /**
      * Изначально null, но в конструкторе создаётся экземпляр класса /mysqli

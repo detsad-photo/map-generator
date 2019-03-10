@@ -188,4 +188,22 @@ class Maps extends Config
         }
     }
 
+    public function updateSalesEvents(int $limit = 20): void
+    {
+        $result = $this->mysqli->query("SELECT `id`, `address` FROM `sales_events` WHERE `lat` IS NULL OR `lng` IS NULL LIMIT $limit");
+        if ($result->num_rows > 0) {
+            while ($row = mysqli_fetch_assoc($result)) {
+                $coords = $this->getCoords($row['address']);
+
+                if (!empty($coords)) {
+                    $lat = $this->mysqli->escape_string($coords[0]);
+                    $lng = $this->mysqli->escape_string($coords[1]);
+                    $id = $row['id'];
+
+                    $this->mysqli->query("UPDATE `sales_events` SET `lat` = '$lat', `lng` = '$lng' WHERE `id` = '$id' LIMIT 1");
+                }
+            }
+        }
+    }
+
 }
