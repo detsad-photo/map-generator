@@ -206,4 +206,97 @@ class Maps extends Config
         }
     }
 
+    public function getSales() {
+        $result = $this->mysqli->query("SELECT s.id, s.name, e.status FROM sales s LEFT JOIN sales_events e ON s.id = e.sale GROUP BY e.status ORDER BY s.name, s.id");
+
+        $sales = [];
+        $sales[0] = [
+            'statuses' => []
+        ];
+
+        while ($row = mysqli_fetch_assoc($result)) {
+            if (!empty($row['status'])) {
+                if (empty($sales[$row['id']])) {
+                    $sales[$row['id']] = [
+                        'id' => $row['id'],
+                        'name' => $row['name'],
+                        'statuses' => []
+                    ];
+                }
+                $sales[$row['id']]['statuses'][] = $row['status'];
+
+                if (!in_array($row['status'], $sales[0]['statuses'])) $sales[0]['statuses'][] = $row['status'];
+            }
+
+        }
+
+        return $sales;
+    }
+
+    public function getPoints(int $saleId = 0, string $status = '', string $date = ''): array
+    {
+        $where = [];
+        if ($saleId > 0) {
+            $saleId = $this->mysqli->escape_string($saleId);
+            $where[] = "`sale` = '$saleId'";
+        }
+        if (!empty($status)) {
+            $status = $this->mysqli->escape_string($status);
+            $where[] = "`status` = '$status'";
+        }
+        if (!empty($date)) {
+            $date = $this->mysqli->escape_string($date);
+            $where[] = "`date` = '$date'";
+        }
+        if (!empty($where)) {
+            $where = ' WHERE '.implode(' AND ', $where);
+        } else{
+            $where = '';
+        }
+
+        $result = $this->mysqli->query("SELECT `id`, `name`, `person`, `comment`, `address`, `status`, `date`, `lat`, `lng` FROM `sales_events` $where");
+
+        $return = [];
+
+        if (mysqli_num_rows($result) > 0) {
+            while ($row = mysqli_fetch_assoc($result)) {
+                $return[] = $row;
+            }
+        }
+
+        return $return;
+    }
+
+    public function getMap(int $saleId = 0, string $status = '', string $date = ''): array
+    {
+        $points = $this->getPoints($saleId, $status, $date);
+
+        if (!empty($points)) {
+            $map = [
+                'type' => 'FeatureCollection',
+                'features' => $this->normalizePoints($points)
+            ];
+
+            return $map;
+        } else{
+            return [];
+        }
+    }
+
+    private function normalizePoints(array $points): array
+    {
+        foreach ($points as $index => $point) {
+            $points[$index] = [
+                'type' => 'Feature',
+                'id' => $index,
+                'geometry' => [
+                    'type' => 'Point',
+                    'coordinates' => [$point['lat'], $point['lng']]
+                ],
+                'point' => $point
+            ];
+        }
+        return $points;
+    }
+
 }
