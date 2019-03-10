@@ -112,15 +112,7 @@ class Maps extends Config
      */
     public function GeneratePoint(array $point)
     {
-
-        if (stripos($point['address'], 'москва') === false AND stripos($point['address'], 'московская') === false) {
-            $point['address'] = 'Москва, ' . $point['address'];
-        } elseif (stripos($point['address'], 'московская') === false) {
-            $point['address'] = 'Московская область, '.$point['address'];
-        }
-
-        $point['address'] = str_replace('(', '', $point['address']);
-        $point['address'] = str_replace(')', '', $point['address']);
+        $point['address'] = $this->normalizeAddress($point['address']);
 
         //Получаем данные из точки
         $address = mysqli_escape_string($this->mysqli, $point['address']);
@@ -143,6 +135,39 @@ class Maps extends Config
             return $point; //Возвращаем точку с координатами
         }
 
+    }
+
+    private function normalizeAddress(string $address): string
+    {
+        if (stripos($address, 'москва') === false AND stripos($address, 'московская') === false) {
+            $address = 'Москва, ' . $address;
+        } elseif (stripos($address, 'московская') === false) {
+            $address = 'Московская область, '.$address;
+        }
+
+        $address = str_replace('(', '', $address);
+        $address = str_replace(')', '', $address);
+
+        return $address;
+    }
+
+    /**
+     * Получает массив координат [lat, long] для заданного адреса (используется в API)
+     * @param string $address Адрес
+     * @return array Массив координат
+     * @throws \Yandex\Geo\Exception
+     */
+    public function getCoords(string $address): array
+    {
+        $address = $this->normalizeAddress($address);
+
+        $location = $this->maps_api->setQuery($address)->setLimit(1)->load()->getResponse()->getList()[0]; //Ищем по картам точку с указанным адресом
+
+        if (!empty($location)) {
+            return [$location->getLatitude(), $location->getLongitude()];
+        } else {
+            return [];
+        }
     }
 
     /**

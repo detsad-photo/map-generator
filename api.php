@@ -49,6 +49,14 @@ if (!empty($request)) {
         } else{
             $result['error'] = 'Can\'t create a map';
         }
+    } elseif(!empty($request['address'])) {
+        $coords = $maps->getCoords($request['address']);
+        if (!empty($coords)){
+            $result['ok'] = true;
+            $result['data'] = $coords;
+        } else{
+            $result['error'] = 'Error on getting coords to map';
+        }
     } elseif(!empty($result['id']) AND !empty($result['text'])) {
         if ($maps->AddTextToMap($result['id'], $result['text'])){
             $result['ok'] = true;
