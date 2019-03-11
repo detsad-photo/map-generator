@@ -241,8 +241,13 @@ class Maps extends Config
             $where[] = "`sale` = '$saleId'";
         }
         if (!empty($status)) {
-            $status = $this->mysqli->escape_string($status);
-            $where[] = "`status` = '$status'";
+            $status = explode('|', $status);
+            $statusWhere = [];
+            foreach ($status as $s) {
+                $s = $this->mysqli->escape_string($s);
+                $statusWhere[] = "'$s'";
+            }
+            $where[] = '`status` IN ('.implode(', ', $statusWhere).')';
         }
         if (!empty($date)) {
             $date = $this->mysqli->escape_string($date);
@@ -297,6 +302,40 @@ class Maps extends Config
             ];
         }
         return $points;
+    }
+
+    public function getAvalibleDates(int $saleId = 0, string $status = ''): array
+    {
+        $where = [];
+        if ($saleId > 0) {
+            $saleId = $this->mysqli->escape_string($saleId);
+            $where[] = "`sale` = '$saleId'";
+        }
+        if (!empty($status)) {
+            $status = explode('|', $status);
+            $statusWhere = [];
+            foreach ($status as $s) {
+                $s = $this->mysqli->escape_string($s);
+                $statusWhere[] = "'$s'";
+            }
+            $where[] = '`status` IN ('.implode(', ', $statusWhere).')';
+        }
+        if (!empty($where)) {
+            $where = ' WHERE '.implode(' AND ', $where);
+        } else{
+            $where = '';
+        }
+
+        $result = $this->mysqli->query("SELECT `date` FROM `sales_events` $where GROUP BY `date`");
+
+        $dates = [];
+        if (mysqli_num_rows($result) > 0) {
+            while ($row = mysqli_fetch_assoc($result)) {
+                $dates[] = $row['date'];
+            }
+        }
+
+        return $dates;
     }
 
 }

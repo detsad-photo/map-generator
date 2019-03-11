@@ -13,6 +13,7 @@ $sales = $maps->getSales();
 
 $saleId = (!empty($_GET['sale'])) ? $_GET['sale'] : 0;
 $statusName = (!empty($_GET['status'])) ? $_GET['status'] : '';
+$statusesSelected = explode('|', $statusName);
 $date = (!empty($_GET['date'])) ? $_GET['date'] : '';
 
 ?><!DOCTYPE html>
@@ -22,9 +23,10 @@ $date = (!empty($_GET['date'])) ? $_GET['date'] : '';
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Пользователи - Админка</title>
+    <title>Карта</title>
     <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="/assets/css/bootstrap-datepicker.min.css">
+    <link rel="stylesheet" href="/assets/css/bootstrap-select.min.css">
 
     <style>
         html, body, #map {
@@ -100,6 +102,7 @@ $date = (!empty($_GET['date'])) ? $_GET['date'] : '';
 <div class="right">
     <header class="pb-2 pt-2 bg-white">
         <form class="form-inline justify-content-center" method="get">
+            <input type="hidden" name="status" value="<?php echo $statusName ?>">
             <select class="form-control mr-sm-2" name="sale">
                 <option value="" data-statuses="<?php echo implode('|', $sales[0]['statuses']) ?>">Все</option>
                 <?php foreach($sales as $index => $sale): ?>
@@ -108,14 +111,15 @@ $date = (!empty($_GET['date'])) ? $_GET['date'] : '';
                     <?php endif; ?>
                 <?php endforeach; ?>
             </select>
-            <select class="form-control mr-sm-2" name="status">
-                <option value="">Все</option>
-                <?php foreach($sales[0]['statuses'] as $status): ?>
-                    <option value="<?php echo $status ?>" <?php if($statusName == $status): ?>selected<?php endif ?>><?php echo $status ?></option>
-                <?php endforeach; ?>
-            </select>
+            <div class="mr-sm-2" style="width: auto">
+                <select class="selectpicker" name="statuses" multiple data-selected-text-format="count" data-actions-box="true">
+                    <?php foreach($sales[0]['statuses'] as $status): ?>
+                        <option value="<?php echo $status ?>" <?php if(in_array($status, $statusesSelected)): ?>selected<?php endif ?>><?php echo $status ?></option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
 
-            <input type="text" class="form-control mr-sm-2" name="date" autocomplete="off" value="<?php echo $date ?>">
+            <input type="text" class="form-control mr-sm-2" name="date" autocomplete="off" value="<?php echo $date ?>" readonly>
 
             <button type="submit" class="btn btn-primary">Показать</button>
         </form>
@@ -124,106 +128,14 @@ $date = (!empty($_GET['date'])) ? $_GET['date'] : '';
 </div>
 
 <script src="/assets/js/jquery.min.js"></script>
+<script src="/assets/js/popper.min.js"></script>
 <script src="/assets/js/bootstrap.min.js"></script>
+<script src="/assets/js/bootstrap-select.min.js"></script>
+<script src="/assets/js/i18n/defaults-ru_RU.min.js"></script>
 <script src="/assets/js/bootstrap-datepicker.min.js"></script>
 <script src="/assets/locales/bootstrap-datepicker.ru.min.js"></script>
 <script src="//api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
-
-<script>
-
-    let myMap;
-
-    $(function () {
-
-        let statusSelector = $('select[name="status"]');
-
-        $('select[name="sale"]').on('change', function () {
-            let option = $(this).find('option:selected');
-            let statuses = option.data('statuses');
-
-            statusSelector.empty();
-            statusSelector.append('<option value="">Все</option>');
-
-            if (statuses !== undefined && statuses !== '') {
-                statuses = statuses.split('|');
-                statuses.forEach(function (value) {
-                    statusSelector.append('<option value="'+value+'">'+value+'</option>');
-                });
-                statusSelector.prop('disabled', false);
-            } else{
-                statusSelector.prop('disabled', true);
-            }
-        });
-
-        $('input[name="date"]').datepicker({
-            format: 'yyyy-mm-dd',
-            language: 'ru',
-            weekStart: 1
-        });
-
-        $(document).on('click', '.item', function () {
-            $(".item").removeClass('active');
-            $(this).addClass('active');
-
-            let lat = $(this).data('lat');
-            let long = $(this).data('long');
-
-            myMap.panTo([lat, long]);
-        });
-    });
-
-    ymaps.ready(init);
-    function init() {
-        myMap = new ymaps.Map("map", {
-            center: [55.7468993, 37.5880382],
-            zoom: 10
-        }, {
-            searchControlProvider: 'yandex#search'
-        });
-        let objectManager = new ymaps.ObjectManager({
-            clusterize: true,
-            gridSize: 32
-        });
-        objectManager.objects.options.set('preset', 'islands#blueDotIcon');
-        objectManager.clusters.options.set('preset', 'islands#blueClusterIcons');
-        myMap.geoObjects.add(objectManager);
-
-        $.ajax({
-            url: '/get_map.php?sale=<?php echo urlencode($saleId) ?>&status=<?php echo urlencode($statusName) ?>&date=<?php echo urlencode($date) ?>'
-        }).done(function(data) {
-
-            if (data.length === undefined) {
-                data.features.forEach(function (value, index) {
-
-                    let pointData = value.point;
-
-                    data.features[index].properties = {
-                        balloonContentHeader: pointData.name,
-                        balloonContent: pointData.person + '<br>' + pointData.comment,
-                        balloonContentFooter: pointData.address,
-                        iconCaption: pointData.comment,
-                    };
-
-                    addToList(pointData);
-
-                });
-
-                objectManager.add(data);
-            } else{
-                $('#list').append('<p class="text-center">Ничего не найдено</p>');
-            }
-        });
-    }
-
-    function addToList(point) {
-        $('#list').append('<div class="item" data-lat="' + point.lat + '" data-long="' + point.lng + '">\n' +
-            '    <p>' + point.name + '</p>\n' +
-            '    <p>' + point.person + '</p>\n' +
-            '    <p>' + point.address + '</p>\n' +
-            '    <p>' + point.status + ' ' + point.date + '</p>\n' +
-            '</div>');
-    }
-</script>
+<script src="/assets/js/sales.js"></script>
 
 </body>
 </html>
