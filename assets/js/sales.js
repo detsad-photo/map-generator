@@ -59,7 +59,6 @@ $(function () {
         let statuses = option.data('statuses');
 
         statusSelector.empty();
-        statusSelector.append('<option value="">Все</option>');
 
         if (statuses !== undefined && statuses !== '') {
             statuses = statuses.split('|');
@@ -159,7 +158,9 @@ function updatePoints() {
                 addToList(pointData);
             });
             objectManager.removeAll();
-            objectManager.add(data);
+            setTimeout(function () {
+                objectManager.add(data);
+            }, 500);
         } else{
             list.append('<p class="text-center">Ничего не найдено</p>');
         }

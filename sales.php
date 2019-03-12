@@ -12,7 +12,7 @@ require_once __DIR__."/engine/autoload.php";
 $sales = $maps->getSales();
 
 $saleId = (!empty($_GET['sale'])) ? $_GET['sale'] : 0;
-$statusName = (!empty($_GET['status'])) ? $_GET['status'] : '';
+$statusName = (!empty($_GET['status'])) ? $_GET['status'] : 'Назначена встреча';
 $statusesSelected = explode('|', $statusName);
 $date = (!empty($_GET['date'])) ? $_GET['date'] : '';
 
@@ -33,7 +33,7 @@ $date = (!empty($_GET['date'])) ? $_GET['date'] : '';
             width: 100%; height: 100%; padding: 0; margin: 0;
         }
         #map{
-            height: calc(100% - 54px);
+            height: calc(100% - 78px);
         }
         .right{
             height: 100%;
@@ -103,25 +103,32 @@ $date = (!empty($_GET['date'])) ? $_GET['date'] : '';
     <header class="pb-2 pt-2 bg-white">
         <form class="form-inline justify-content-center" method="get">
             <input type="hidden" name="status" value="<?php echo $statusName ?>">
-            <select class="form-control mr-sm-2" name="sale">
-                <option value="" data-statuses="<?php echo implode('|', $sales[0]['statuses']) ?>">Все</option>
-                <?php foreach($sales as $index => $sale): ?>
-                    <?php if ($index > 0): ?>
-                        <option value="<?php echo $sale['id'] ?>" data-statuses="<?php echo implode('|', $sale['statuses']) ?>" <?php if($saleId == $sale['id']): ?>selected<?php endif ?>><?php echo $sale['name'] ?></option>
-                    <?php endif; ?>
-                <?php endforeach; ?>
-            </select>
+            <div class="mr-sm-2">
+                <label for="sale">Менеджер</label>
+                <select class="form-control" name="sale" id="sale">
+                    <option value="" data-statuses="<?php echo implode('|', $sales[0]['statuses']) ?>">Все</option>
+                    <?php foreach($sales as $index => $sale): ?>
+                        <?php if ($index > 0): ?>
+                            <option value="<?php echo $sale['id'] ?>" data-statuses="<?php echo implode('|', $sale['statuses']) ?>" <?php if($saleId == $sale['id']): ?>selected<?php endif ?>><?php echo $sale['name'] ?></option>
+                        <?php endif; ?>
+                    <?php endforeach; ?>
+                </select>
+            </div>
             <div class="mr-sm-2" style="width: auto">
-                <select class="selectpicker" name="statuses" multiple data-selected-text-format="count" data-actions-box="true">
+                <label for="statuses">Статус</label>
+                <select class="selectpicker" name="statuses" multiple data-selected-text-format="count" data-actions-box="true" id="statuses">
                     <?php foreach($sales[0]['statuses'] as $status): ?>
                         <option value="<?php echo $status ?>" <?php if(in_array($status, $statusesSelected)): ?>selected<?php endif ?>><?php echo $status ?></option>
                     <?php endforeach; ?>
                 </select>
             </div>
 
-            <input type="text" class="form-control mr-sm-2" name="date" autocomplete="off" value="<?php echo $date ?>" readonly>
+            <div class="mr-sm-2">
+                <label for="date">Дата</label>
+                <input type="text" class="form-control" name="date" autocomplete="off" value="<?php echo $date ?>" readonly id="date">
+            </div>
 
-            <button type="submit" class="btn btn-primary">Показать</button>
+            <button type="submit" class="btn btn-primary mt-4">Показать</button>
         </form>
     </header>
     <div id="map"></div>
