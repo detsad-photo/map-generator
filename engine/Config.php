@@ -45,6 +45,8 @@ class Config {
      */
     public $mysqli = null;
 
+    public $sale_map_url = 'http://maps.pscripem.beget.tech/sales.php';
+
     /**
      * Пустой конструктор, в котором создаётся подключение mysqli
      */

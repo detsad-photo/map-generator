@@ -54,7 +54,7 @@ $(function () {
 
     let statusSelector = $('select[name="statuses"]');
 
-    $('select[name="sale"]').on('change', function () {
+    $('select[name="sale"], input[name="sale"]').on('change', function () {
         let option = $(this).find('option:selected');
         let statuses = option.data('statuses');
 
@@ -107,7 +107,7 @@ $(function () {
     $('form').on('submit', function (e) {
         e.preventDefault();
 
-        let sale = $('select[name="sale"]').val();
+        let sale = $('select[name="sale"], input[name="sale"]').val();
         let status = $('input[name="status"]').val();
         let date = $('input[name="date"]').val();
 
@@ -135,7 +135,7 @@ function init() {
 }
 
 function updatePoints() {
-    let sale = $('select[name="sale"]').val();
+    let sale = $('select[name="sale"], input[name="sale"]').val();
     let status = $('input[name="status"]').val();
     let date = $('input[name="date"]').val();
 
@@ -168,7 +168,7 @@ function updatePoints() {
 }
 
 function updateDate() {
-    let sale = $('select[name="sale"]').val();
+    let sale = $('select[name="sale"], input[name="sale"]').val();
     let status = $('input[name="status"]').val();
 
     $.ajax({

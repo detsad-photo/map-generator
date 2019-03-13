@@ -206,8 +206,12 @@ class Maps extends Config
         }
     }
 
-    public function getSales() {
-        $result = $this->mysqli->query("SELECT s.id, s.name, e.status FROM sales s LEFT JOIN sales_events e ON s.id = e.sale GROUP BY e.status ORDER BY s.name, s.id");
+    public function getSales(int $userId = 0) {
+        if ($userId != 0) {
+            $result = $this->mysqli->query("SELECT s.id, s.name, e.status FROM sales s LEFT JOIN sales_events e ON s.id = e.sale WHERE s.id = '$userId' GROUP BY e.status ORDER BY s.name, s.id");
+        } else{
+            $result = $this->mysqli->query("SELECT s.id, s.name, e.status FROM sales s LEFT JOIN sales_events e ON s.id = e.sale GROUP BY e.status ORDER BY s.name, s.id");
+        }
 
         $sales = [];
         $sales[0] = [

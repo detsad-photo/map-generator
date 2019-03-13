@@ -23,3 +23,6 @@ $config = new Config();
 
 require_once __DIR__."/Maps.php";
 $maps = new Maps();
+
+require_once __DIR__."/Users.php";
+$users = new Users();
