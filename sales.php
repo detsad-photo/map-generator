@@ -92,6 +92,14 @@ $date = (!empty($_GET['date'])) ? $_GET['date'] : '';
             font-weight: 500;
             font-size: 12px;
         }
+        header{
+            position: relative;
+        }
+        header .logout{
+            position: absolute;
+            right: 15px;
+            top: 15px;
+        }
     </style>
 </head>
 <body>
@@ -146,6 +154,9 @@ $date = (!empty($_GET['date'])) ? $_GET['date'] : '';
 
             <button type="submit" class="btn btn-primary mt-4">Показать</button>
         </form>
+        <div class="logout">
+            <a href="/logout.php">Выйти</a>
+        </div>
     </header>
     <div id="map"></div>
 </div>

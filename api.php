@@ -50,12 +50,13 @@ if (!empty($request)) {
             $result['error'] = 'Can\'t create a map';
         }
     } elseif(!empty($request['address'])) {
-        $coords = $maps->getCoords($request['address']);
-        if (!empty($coords)){
+        try {
+            $coords = $maps->getCoords($request['address']);
             $result['ok'] = true;
             $result['data'] = $coords;
-        } else{
-            $result['error'] = 'Error on getting coords to map';
+        } catch (Exception $e) {
+            $result['error'] = $e->getMessage();
+            $result['error_code'] = $e->getCode();
         }
     } elseif(!empty($result['id']) AND !empty($result['text'])) {
         if ($maps->AddTextToMap($result['id'], $result['text'])){

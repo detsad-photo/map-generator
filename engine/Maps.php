@@ -156,12 +156,20 @@ class Maps extends Config
      * @param string $address Адрес
      * @return array Массив координат
      * @throws \Yandex\Geo\Exception
+     * @throws \Exception
      */
     public function getCoords(string $address): array
     {
         $address = $this->normalizeAddress($address);
 
         $location = $this->maps_api->setQuery($address)->setLimit(1)->load()->getResponse()->getList()[0]; //Ищем по картам точку с указанным адресом
+
+        if (mb_stripos($location->getAddress(), 'санкт-петербург') === false AND
+            mb_stripos($location->getAddress(), 'ленинградская') === false AND
+            mb_stripos($location->getAddress(), 'московская') === false AND
+            mb_stripos($location->getAddress(), 'москва') === false) {
+            throw new \Exception('Возможно, ошибка в адресе', 2);
+        }
 
         if (!empty($location)) {
             return [$location->getLatitude(), $location->getLongitude()];

@@ -113,7 +113,9 @@ $(function () {
 
         updateUrl(`${baseUrl}?sale=${sale}&status=${status}&date=${date}`);
         updatePoints();
-    })
+    });
+
+    updateDate();
 });
 
 ymaps.ready(init);
