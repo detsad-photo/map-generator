@@ -139,9 +139,10 @@ class Maps extends Config
 
     private function normalizeAddress(string $address): string
     {
-        if (stripos($address, 'москва') === false AND stripos($address, 'московская') === false) {
+
+        if (mb_stripos($address, 'москва') === false AND mb_stripos($address, 'московская') === false) {
             $address = 'Москва, ' . $address;
-        } elseif (stripos($address, 'московская') === false) {
+        } elseif (mb_stripos($address, 'московская') === false) {
             $address = 'Московская область, '.$address;
         }
 
@@ -172,7 +173,7 @@ class Maps extends Config
         }
 
         if (!empty($location)) {
-            return [$location->getLatitude(), $location->getLongitude()];
+            return [$location->getLatitude(), $location->getLongitude(), $address];
         } else {
             return [];
         }
