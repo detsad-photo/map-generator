@@ -34,6 +34,7 @@ if (!empty($request)) {
                 'url' => $config->base_domain.'map.php?id='.$map
             ];
         } elseif (!empty($map)){
+            $maps->logRequest('api1_newmap', $request['address']);
 
             $map = [$map];
             $result = $maps->Add($map);
@@ -50,6 +51,7 @@ if (!empty($request)) {
             $result['error'] = 'Can\'t create a map';
         }
     } elseif(!empty($request['address'])) {
+        $maps->logRequest('api2_getcoords', $request['address']);
         try {
             $coords = $maps->getCoords($request['address']);
             $result['ok'] = true;
@@ -59,6 +61,7 @@ if (!empty($request)) {
             $result['error_code'] = $e->getCode();
         }
     } elseif(!empty($result['id']) AND !empty($result['text'])) {
+        $maps->logRequest('api3', $request['address']);
         if ($maps->AddTextToMap($result['id'], $result['text'])){
             $result['ok'] = true;
         } else{

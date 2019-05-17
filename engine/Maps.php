@@ -28,6 +28,13 @@ class Maps extends Config
         $this->maps_api = new \Yandex\Geo\Api();
     }
 
+    public function logRequest(string $type, string $address) {
+        $type = $this->mysqli->escape_string($type);
+        $address = $this->mysqli->escape_string($address);
+
+        $this->mysqli->query("INSERT INTO `geocoding` (`type`, `address`) VALUES ('$type', '$address')");
+    }
+
     /**
      * Добавить карту с массивом точек на ней
      * $array[] Это масив масивов точек
@@ -126,6 +133,8 @@ class Maps extends Config
             return $repeat['id']; //Возвращаем его ID
         } else{ //Иначе
 
+            $this->logRequest('generatePoint', $point['address']);
+
             $location = $this->maps_api->setQuery($point['address'])->setLimit(1)->load()->getResponse()->getList()[0]; //Ищем по картам точку с указанным адресом
 
             //Добавляем коориднаты к точке
@@ -163,7 +172,13 @@ class Maps extends Config
     {
         $address = $this->normalizeAddress($address);
 
-        $location = $this->maps_api->setQuery($address)->setLimit(1)->load()->getResponse()->getList()[0]; //Ищем по картам точку с указанным адресом
+        $locations = $this->maps_api->setQuery($address)->setLimit(1)->load()->getResponse(); //Ищем по картам точку с указанным адресом
+
+        $location = $locations->getFirst();
+
+        if (empty($location)) {
+            throw new \Exception('Не удаётся получить координаты адреса. Пожалуйста, попробуйте ещё раз или создайте заявку вручную.', 3);
+        }
 
         if (mb_stripos($location->getAddress(), 'санкт-петербург') === false AND
             mb_stripos($location->getAddress(), 'ленинградская') === false AND
@@ -202,6 +217,7 @@ class Maps extends Config
         $result = $this->mysqli->query("SELECT `id`, `address` FROM `sales_events` WHERE `lat` IS NULL OR `lng` IS NULL LIMIT $limit");
         if ($result->num_rows > 0) {
             while ($row = mysqli_fetch_assoc($result)) {
+                $this->logRequest('updateSalesEvents', $row['address']);
                 $coords = $this->getCoords($row['address']);
 
                 if (!empty($coords)) {
