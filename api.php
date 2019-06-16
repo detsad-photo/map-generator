@@ -22,11 +22,6 @@ if (!empty($request)) {
     $request = json_decode($request, true);
 
     if (!empty($request['description']) AND !empty($request['persons']) AND !empty($request['address'])) {
-
-        /*if (stripos($request['address'], 'Московская') === false) {
-            $request['address'] = 'Московская область, '.$request['address'];
-        }*/
-
         $map = $maps->GeneratePoint($request);
         if(is_numeric($map)) {
             $result = [
@@ -49,6 +44,19 @@ if (!empty($request)) {
             }
         } else{
             $result['error'] = 'Can\'t create a map';
+        }
+    } elseif(!empty($request['function']) AND !empty($request['address'])) {
+        if($request['function'] == 'data') {
+            $maps->logRequest('api4_getdata', $request['address']);
+            try {
+                $result['data'] = $maps->getData($request['address']);
+                $result['ok'] = true;
+            } catch (Exception $e) {
+                $result['error'] = $e->getMessage();
+                $result['error_code'] = $e->getCode();
+            }
+        } else{
+            $result['error'] = 'Undefined function.';
         }
     } elseif(!empty($request['address'])) {
         $maps->logRequest('api2_getcoords', $request['address']);

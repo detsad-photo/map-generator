@@ -146,6 +146,41 @@ class Maps extends Config
 
     }
 
+    /**
+     * @param string $address
+     * @return array
+     * @throws \Yandex\Geo\Exception
+     * @throws \Yandex\Geo\Exception\CurlError
+     * @throws \Yandex\Geo\Exception\ServerError
+     * @throws \Exception
+     */
+    public function getData(string $address): array
+    {
+        $address = $this->normalizeAddress($address);
+
+        $locations = $this->maps_api->setQuery($address)->setLimit(1)->load()->getResponse(); //Ищем по картам точку с указанным адресом
+        $location = $locations->getFirst();
+
+        if (empty($location)) {
+            throw new \Exception('Не удаётся получить индекс адреса', 3);
+        }
+
+        if (mb_stripos($location->getAddress(), 'санкт-петербург') === false AND
+            mb_stripos($location->getAddress(), 'ленинградская') === false AND
+            mb_stripos($location->getAddress(), 'московская') === false AND
+            mb_stripos($location->getAddress(), 'москва') === false) {
+            throw new \Exception('Возможно, ошибка в адресе', 2);
+        }
+
+        return [
+            'address' => $location->getAddress(),
+            'area' => $location->getAdministrativeAreaName(),
+            'city' => $location->getLocalityName(),
+            'street' => $location->getThoroughfareName(),
+            'house' => $location->getPremiseNumber()
+        ];
+    }
+
     private function normalizeAddress(string $address): string
     {
 
