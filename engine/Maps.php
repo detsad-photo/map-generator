@@ -177,11 +177,11 @@ class Maps extends Config
     private function normalizeAddress(string $address): string
     {
 
-        if (mb_stripos($address, 'москва') === false AND mb_stripos($address, 'московская') === false) {
+        /*if (mb_stripos($address, 'москва') === false AND mb_stripos($address, 'московская') === false) {
             $address = 'Москва, ' . $address;
         } elseif (mb_stripos($address, 'московская') === false) {
             $address = 'Московская область, '.$address;
-        }
+        }*/
 
         $address = str_replace('(', '', $address);
         $address = str_replace(')', '', $address);
