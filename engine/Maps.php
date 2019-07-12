@@ -165,13 +165,6 @@ class Maps extends Config
             throw new \Exception('Не удаётся получить индекс адреса', 3);
         }
 
-        if (mb_stripos($location->getAddress(), 'санкт-петербург') === false AND
-            mb_stripos($location->getAddress(), 'ленинградская') === false AND
-            mb_stripos($location->getAddress(), 'московская') === false AND
-            mb_stripos($location->getAddress(), 'москва') === false) {
-            throw new \Exception('Возможно, ошибка в адресе', 2);
-        }
-
         return [
             'address' => $location->getAddress(),
             'area' => $location->getAdministrativeAreaName(),
@@ -213,13 +206,6 @@ class Maps extends Config
 
         if (empty($location)) {
             throw new \Exception('Не удаётся получить координаты адреса. Пожалуйста, попробуйте ещё раз или создайте заявку вручную.', 3);
-        }
-
-        if (mb_stripos($location->getAddress(), 'санкт-петербург') === false AND
-            mb_stripos($location->getAddress(), 'ленинградская') === false AND
-            mb_stripos($location->getAddress(), 'московская') === false AND
-            mb_stripos($location->getAddress(), 'москва') === false) {
-            throw new \Exception('Возможно, ошибка в адресе', 2);
         }
 
         if (!empty($location)) {
