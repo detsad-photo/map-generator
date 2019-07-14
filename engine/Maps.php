@@ -158,15 +158,24 @@ class Maps extends Config
     {
         $address = $this->normalizeAddress($address);
 
-        $locations = $this->maps_api->setQuery($address)->setLimit(1)->load()->getResponse(); //Ищем по картам точку с указанным адресом
+        try {
+            $locations = $this->maps_api->setQuery($address)->setLimit(1)->load()->getResponse(); //Ищем по картам точку с указанным адресом
+        } catch(Exception $e) {
+            throw new \Exception('Ошибка запроса в API Яндекс.Карт: ' . $e->getMessage(), 4);
+        }
+
         $location = $locations->getFirst();
 
         if (empty($location)) {
-            throw new \Exception('Не удаётся получить индекс адреса', 3);
+            throw new \Exception('Не удаётся получить данные адреса', 3);
         }
 
         return [
             'address' => $location->getAddress(),
+            'coords' => [
+                $location->getLatitude(),
+                $location->getLongitude()
+            ],
             'area' => $location->getAdministrativeAreaName(),
             'city' => $location->getLocalityName(),
             'street' => $location->getThoroughfareName(),
@@ -200,7 +209,11 @@ class Maps extends Config
     {
         $address = $this->normalizeAddress($address);
 
-        $locations = $this->maps_api->setQuery($address)->setLimit(1)->load()->getResponse(); //Ищем по картам точку с указанным адресом
+        try {
+            $locations = $this->maps_api->setQuery($address)->setLimit(1)->load()->getResponse(); //Ищем по картам точку с указанным адресом
+        } catch(Exception $e) {
+            throw new \Exception('Ошибка запроса в API Яндекс.Карт: ' . $e->getMessage(), 4);
+        }
 
         $location = $locations->getFirst();
 
