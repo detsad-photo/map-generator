@@ -16,7 +16,7 @@ class Config {
      * Базовый домен приложения
      * @var string
      */
-    public $base_domain = 'http://maps.pscripem.beget.tech/';
+    public $base_domain = 'http://maps.detsad.photo/';
 
     /**
      * Хост MySQLi
@@ -27,17 +27,17 @@ class Config {
      * Логин MySQL
      * @var string
      */
-    private $mysqli_login = "pscripem_s";
+    private $mysqli_login = "main";
     /**
      * Пароль MySQL
      * @var string
      */
-    private $mysqli_password = "AN&4hX8C";
+    private $mysqli_password = "eR6R82CFdeOJ3PW3";
     /**
      * База данных MySQL
      * @var string
      */
-    private $mysqli_database = "pscripem_s";
+    private $mysqli_database = "main";
 
     /**
      * Изначально null, но в конструкторе создаётся экземпляр класса /mysqli
@@ -45,7 +45,7 @@ class Config {
      */
     public $mysqli = null;
 
-    public $sale_map_url = 'http://maps.pscripem.beget.tech/sales.php';
+    public $sale_map_url = 'http://maps.detsad.photo/sales.php';
 
     /**
      * Пустой конструктор, в котором создаётся подключение mysqli
