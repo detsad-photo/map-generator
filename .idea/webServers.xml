@@ -2,8 +2,8 @@
 <project version="4">
   <component name="WebServers">
     <option name="servers">
-      <webServer id="e4d13faa-a6c4-4acd-b6eb-7a23f61557cf" name="Beget - Yandex Maps" url="http://maps.pscripem.beget.tech">
-        <fileTransfer host="pscripem.beget.tech" port="22" rootFolder="/home/p/pscripem/maps.pscripem.beget.tech/public_html" accessType="SFTP">
+      <webServer id="e4d13faa-a6c4-4acd-b6eb-7a23f61557cf" name="Beget - Yandex Maps" url="https://maps.detsad.photo">
+        <fileTransfer host="5.181.109.92" port="22" privateKey="E:\keys\detsad-photo-beget-main.ppk" rootFolder="/var/www/maps.detsad.photo" accessType="SFTP" keyPair="true">
           <advancedOptions>
             <advancedOptions dataProtectionLevel="Private" shareSSLContext="true" />
           </advancedOptions>

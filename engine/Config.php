@@ -45,7 +45,7 @@ class Config {
      */
     public $mysqli = null;
 
-    public $sale_map_url = 'http://maps.detsad.photo/sales.php';
+    public $sale_map_url = 'https://maps.detsad.photo/sales.php';
 
     /**
      * Пустой конструктор, в котором создаётся подключение mysqli

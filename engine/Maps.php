@@ -149,37 +149,62 @@ class Maps extends Config
     /**
      * @param string $address
      * @return array
-     * @throws \Yandex\Geo\Exception
-     * @throws \Yandex\Geo\Exception\CurlError
-     * @throws \Yandex\Geo\Exception\ServerError
-     * @throws \Exception
+     * @throws Exception
      */
     public function getData(string $address): array
     {
         $address = $this->normalizeAddress($address);
 
-        try {
-            $locations = $this->maps_api->setQuery($address)->setLimit(1)->load()->getResponse(); //Ищем по картам точку с указанным адресом
-        } catch(Exception $e) {
-            throw new \Exception('Ошибка запроса в API Яндекс.Карт: ' . $e->getMessage(), 4);
-        }
+        $addressHash = $this->mysqli->escape_string(md5($address));
+        $result = $this->mysqli->query("SELECT * FROM `addresses` WHERE `hash` = '$addressHash' LIMIT 1");
+        if (mysqli_num_rows($result) > 0) {
+            $result = mysqli_fetch_assoc($result);
+        } else{
+            try {
+                $locations = $this->maps_api->setQuery($address)->setLimit(1)->load()->getResponse(); //Ищем по картам точку с указанным адресом
+            } catch(Exception $e) {
+                throw new \Exception('Ошибка запроса в API Яндекс.Карт: ' . $e->getMessage(), 4);
+            }
 
-        $location = $locations->getFirst();
+            $location = $locations->getFirst();
 
-        if (empty($location)) {
-            throw new \Exception('Не удаётся получить данные адреса', 3);
+            if (empty($location)) {
+                throw new \Exception('Не удаётся получить данные адреса', 3);
+            }
+
+            $result = [
+                'address' => $location->getAddress(),
+                'lat' => $location->getLatitude(),
+                'lng' => $location->getLongitude(),
+                'area' => $location->getAdministrativeAreaName(),
+                'city' => $location->getLocalityName(),
+                'street' => $location->getThoroughfareName(),
+                'house' => $location->getPremiseNumber()
+            ];
+
+            $resultMysqli = [
+                'address' => $this->mysqli->escape_string($location->getAddress()),
+                'lat' => $this->mysqli->escape_string($location->getLatitude()),
+                'lng' => $this->mysqli->escape_string($location->getLongitude()),
+                'area' => $this->mysqli->escape_string($location->getAdministrativeAreaName()),
+                'city' => $this->mysqli->escape_string($location->getLocalityName()),
+                'street' => $this->mysqli->escape_string($location->getThoroughfareName()),
+                'house' => $this->mysqli->escape_string($location->getPremiseNumber())
+            ];
+
+            $this->mysqli->query("INSERT INTO `addresses`(`address`, `hash`, `lat`, `lng`, `area`, `city`, `street`, `house`) VALUES ('{$resultMysqli['address']}', '{$addressHash}', '{$resultMysqli['lat']}', '{$resultMysqli['lng']}', '{$resultMysqli['area']}', '{$resultMysqli['city']}', '{$resultMysqli['street']}', '{$resultMysqli['house']}')");
         }
 
         return [
-            'address' => $location->getAddress(),
+            'address' => $result['address'],
             'coords' => [
-                $location->getLatitude(),
-                $location->getLongitude()
+                floatval($result['lat']),
+                floatval($result['lng'])
             ],
-            'area' => $location->getAdministrativeAreaName(),
-            'city' => $location->getLocalityName(),
-            'street' => $location->getThoroughfareName(),
-            'house' => $location->getPremiseNumber()
+            'area' => $result['area'],
+            'city' => $result['city'],
+            'street' => $result['street'],
+            'house' => $result['house']
         ];
     }
 
@@ -252,14 +277,21 @@ class Maps extends Config
         if ($result->num_rows > 0) {
             while ($row = mysqli_fetch_assoc($result)) {
                 $this->logRequest('updateSalesEvents', $row['address']);
-                $coords = $this->getCoords($row['address']);
+                $id = $row['id'];
 
-                if (!empty($coords)) {
-                    $lat = $this->mysqli->escape_string($coords[0]);
-                    $lng = $this->mysqli->escape_string($coords[1]);
-                    $id = $row['id'];
+                try {
+                    $coords = $this->getCoords($row['address']);
 
-                    $this->mysqli->query("UPDATE `sales_events` SET `lat` = '$lat', `lng` = '$lng' WHERE `id` = '$id' LIMIT 1");
+                    if (!empty($coords)) {
+                        $lat = $this->mysqli->escape_string($coords[0]);
+                        $lng = $this->mysqli->escape_string($coords[1]);
+
+                        $this->mysqli->query("UPDATE `sales_events` SET `lat` = '$lat', `lng` = '$lng' WHERE `id` = '$id' LIMIT 1");
+                    }
+                } catch (Exception $e) {
+                    if ($e->getCode() == 4) {
+                        $this->mysqli->query("UPDATE `sales_events` SET `lat` = '55.5807481', `lng` = '36.8251304' WHERE `id` = '$id' LIMIT 1");
+                    }
                 }
             }
         }

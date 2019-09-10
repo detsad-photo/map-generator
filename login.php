@@ -11,6 +11,7 @@ require_once __DIR__ . "/engine/autoload.php";
 
 if (!empty($_POST['email']) AND !empty($_POST['password'])) {
     if ($users->login($_POST['email'], $_POST['password'])) {
+        echo 'asd';
         header("Location: ".$config->sale_map_url);
     } else{
         $result = 'Логин или пароль указаны неверно';
