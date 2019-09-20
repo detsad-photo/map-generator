@@ -156,6 +156,7 @@ class Maps extends Config
         $address = $this->normalizeAddress($address);
 
         $addressHash = $this->mysqli->escape_string(md5($address));
+
         $result = $this->mysqli->query("SELECT * FROM `addresses` WHERE `hash` = '$addressHash' LIMIT 1");
         if (mysqli_num_rows($result) > 0) {
             $result = mysqli_fetch_assoc($result);
@@ -195,6 +196,18 @@ class Maps extends Config
             $this->mysqli->query("INSERT INTO `addresses`(`address`, `hash`, `lat`, `lng`, `area`, `city`, `street`, `house`) VALUES ('{$resultMysqli['address']}', '{$addressHash}', '{$resultMysqli['lat']}', '{$resultMysqli['lng']}', '{$resultMysqli['area']}', '{$resultMysqli['city']}', '{$resultMysqli['street']}', '{$resultMysqli['house']}')");
         }
 
+        $axiomusAddress = '';
+        $axiomusCityIndex = 0;
+        $axiomusFromMkad = 0;
+        if (mb_strtolower($result['city']) != 'москва' AND mb_strtolower($result['city']) != 'санкт-петербург') {
+            $axiomusAddress = "г. {$result['city']}";
+            $axiomusFromMkad = 1;
+        } else if (mb_strtolower($result['city']) == 'санкт-петербург') {
+            $axiomusCityIndex = 1;
+        }
+
+        $axiomusAddress .= "{$result['street']}, {$result['house']}";
+
         return [
             'address' => $result['address'],
             'coords' => [
@@ -204,7 +217,12 @@ class Maps extends Config
             'area' => $result['area'],
             'city' => $result['city'],
             'street' => $result['street'],
-            'house' => $result['house']
+            'house' => $result['house'],
+            'axiomus' => [
+                'address' => $axiomusAddress,
+                'city' => $axiomusCityIndex,
+                'mkad' => $axiomusFromMkad
+            ]
         ];
     }
 
