@@ -199,14 +199,17 @@ class Maps extends Config
         $axiomusAddress = '';
         $axiomusCityIndex = 0;
         $axiomusFromMkad = 0;
+
         if (mb_strtolower($result['city']) != 'москва' AND mb_strtolower($result['city']) != 'санкт-петербург') {
-            $axiomusAddress = "г. {$result['city']}";
+            $axiomusAddress = "г. {$result['city']}, ";
             $axiomusFromMkad = 1;
-        } else if (mb_strtolower($result['city']) == 'санкт-петербург') {
+        }
+        if (mb_strtolower($result['city']) == 'санкт-петербург' OR mb_strtolower($result['area']) == 'санкт-петербург') {
             $axiomusCityIndex = 1;
         }
 
         $axiomusAddress .= "{$result['street']}, {$result['house']}";
+        $axiomusAddress = trim($axiomusAddress);
 
         return [
             'address' => $result['address'],
