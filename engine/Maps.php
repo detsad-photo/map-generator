@@ -7,6 +7,15 @@
  * Time: 20:41
  */
 
+namespace Maps;
+
+use GuzzleHttp\Client;
+use Maps\Exceptions\DatabaseException;
+use Maps\Exceptions\MapsException;
+use Yandex\Geo\Api;
+use Yandex\Geo\Exception;
+use Yandex\Geo\Exception\MapsError;
+
 /**
  * Основной класс для работы с картами
  */
@@ -15,9 +24,11 @@ class Maps extends Config
 
     /**
      * Экземпляр класса Yandex Geo API для работы с пакетом yandex/geo
-     * @var \Yandex\Geo\Api
+     * @var Api
      */
     private $maps_api;
+    private $guzzle;
+    private $addresses;
 
     /**
      * Пустой конструктор
@@ -25,14 +36,16 @@ class Maps extends Config
     public function __construct()
     {
         parent::__construct();
-        $this->maps_api = new \Yandex\Geo\Api();
-    }
-
-    public function logRequest(string $type, string $address) {
-        $type = $this->mysqli->escape_string($type);
-        $address = $this->mysqli->escape_string($address);
-
-        $this->mysqli->query("INSERT INTO `geocoding` (`type`, `address`) VALUES ('$type', '$address')");
+        $this->maps_api = new Api();
+        $this->guzzle = new Client([
+            'http_errors' => false,
+            'proxy' => 'http://51.15.38.26:3128',
+            'debug' => true,
+            'headers' => [
+                'User-Agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:70.0) Gecko/20100101 Firefox/70.0'
+            ]
+        ]);
+        $this->addresses = new Addresses();
     }
 
     /**
@@ -54,7 +67,7 @@ class Maps extends Config
         }
         $array = mysqli_escape_string($this->mysqli, json_encode($array)); //В любом случае, добавляем в JSON весь массив
 
-        if (!empty($address)) { //Если в массиве был только 1 элемент, то добавляем так же и дополнительные данные
+        if (!empty($address) AND !empty($name) AND !empty($description)) { //Если в массиве был только 1 элемент, то добавляем так же и дополнительные данные
             $result = $this->mysqli->query("INSERT INTO maps (locations, address, name, description) VALUES ('$array', '$address', '$name', '$description')");
         } else{ //Иначе просто кладём всё, что есть в JSON в locations
             $result = $this->mysqli->query("INSERT INTO maps (locations) VALUES ('$array')");
@@ -115,11 +128,12 @@ class Maps extends Config
      * Создаёт значения lat и long для указанной точки. Если в базе есть уже такая карта с теми же address, persons и description - вернёт её ID
      * @param array $point Массив, содержащий данные address, persons, description
      * @return array|int Готовый массив, который можно добавить через $this->Add() или ID уже сщуетсвующей карты
-     * @throws \Yandex\Geo\Exception
+     * @throws Exception
      */
     public function GeneratePoint(array $point)
     {
-        $point['address'] = $this->normalizeAddress($point['address']);
+        $originalAddress = $point['address'];
+        $point['address'] = $this->addresses->normalizeAddress($point['address']);
 
         //Получаем данные из точки
         $address = mysqli_escape_string($this->mysqli, $point['address']);
@@ -133,17 +147,18 @@ class Maps extends Config
             return $repeat['id']; //Возвращаем его ID
         } else{ //Иначе
 
-            $this->logRequest('generatePoint', $point['address']);
-
-            $location = $this->maps_api->setQuery($point['address'])->setLimit(1)->load()->getResponse()->getList()[0]; //Ищем по картам точку с указанным адресом
+            try {
+                $addressData = $this->addresses->getData($originalAddress);
+            } catch (DatabaseException $e) {
+                throw new Exception($e->getMessage(), $e->getCode());
+            }
 
             //Добавляем коориднаты к точке
-            $point['lat'] = $location->getLatitude();
-            $point['long'] = $location->getLongitude();
+            $point['lat'] = $addressData->getLat();
+            $point['long'] = $addressData->getLng();
 
             return $point; //Возвращаем точку с координатами
         }
-
     }
 
     /**
@@ -153,48 +168,23 @@ class Maps extends Config
      */
     public function getData(string $address): array
     {
-        $address = $this->normalizeAddress($address);
-
-        $addressHash = $this->mysqli->escape_string(md5($address));
-
-        $result = $this->mysqli->query("SELECT * FROM `addresses` WHERE `hash` = '$addressHash' LIMIT 1");
-        if (mysqli_num_rows($result) > 0) {
-            $result = mysqli_fetch_assoc($result);
-        } else{
-            try {
-                $locations = $this->maps_api->setQuery($address)->setLimit(1)->load()->getResponse(); //Ищем по картам точку с указанным адресом
-            } catch(Exception $e) {
-                throw new \Exception('Ошибка запроса в API Яндекс.Карт: ' . $e->getMessage(), 4);
-            }
-
-            $location = $locations->getFirst();
-
-            if (empty($location)) {
-                throw new \Exception('Не удаётся получить данные адреса', 3);
-            }
-
-            $result = [
-                'address' => $location->getAddress(),
-                'lat' => $location->getLatitude(),
-                'lng' => $location->getLongitude(),
-                'area' => $location->getAdministrativeAreaName(),
-                'city' => $location->getLocalityName(),
-                'street' => $location->getThoroughfareName(),
-                'house' => $location->getPremiseNumber()
-            ];
-
-            $resultMysqli = [
-                'address' => $this->mysqli->escape_string($location->getAddress()),
-                'lat' => $this->mysqli->escape_string($location->getLatitude()),
-                'lng' => $this->mysqli->escape_string($location->getLongitude()),
-                'area' => $this->mysqli->escape_string($location->getAdministrativeAreaName()),
-                'city' => $this->mysqli->escape_string($location->getLocalityName()),
-                'street' => $this->mysqli->escape_string($location->getThoroughfareName()),
-                'house' => $this->mysqli->escape_string($location->getPremiseNumber())
-            ];
-
-            $this->mysqli->query("INSERT INTO `addresses`(`address`, `hash`, `lat`, `lng`, `area`, `city`, `street`, `house`) VALUES ('{$resultMysqli['address']}', '{$addressHash}', '{$resultMysqli['lat']}', '{$resultMysqli['lng']}', '{$resultMysqli['area']}', '{$resultMysqli['city']}', '{$resultMysqli['street']}', '{$resultMysqli['house']}')");
+        try {
+            $location = $this->addresses->getData($address);
+        } catch (MapsError $e) {
+            throw new Exception($e->getMessage(), $e->getCode());
+        } catch (DatabaseException $e) {
+            throw new Exception($e->getMessage(), $e->getCode());
         }
+
+        $result = [
+            'address' => $location->getAddress(),
+            'lat' => $location->getLat(),
+            'lng' => $location->getLng(),
+            'area' => $location->getArea(),
+            'city' => $location->getCity(),
+            'street' => $location->getCity(),
+            'house' => $location->getHouse()
+        ];
 
         $axiomusAddress = '';
         $axiomusCityIndex = 0;
@@ -229,46 +219,18 @@ class Maps extends Config
         ];
     }
 
-    private function normalizeAddress(string $address): string
-    {
-
-        /*if (mb_stripos($address, 'москва') === false AND mb_stripos($address, 'московская') === false) {
-            $address = 'Москва, ' . $address;
-        } elseif (mb_stripos($address, 'московская') === false) {
-            $address = 'Московская область, '.$address;
-        }*/
-
-        $address = str_replace('(', '', $address);
-        $address = str_replace(')', '', $address);
-
-        return $address;
-    }
-
     /**
      * Получает массив координат [lat, long] для заданного адреса (используется в API)
      * @param string $address Адрес
      * @return array Массив координат
-     * @throws \Yandex\Geo\Exception
      * @throws \Exception
      */
     public function getCoords(string $address): array
     {
-        $address = $this->normalizeAddress($address);
-
-        try {
-            $locations = $this->maps_api->setQuery($address)->setLimit(1)->load()->getResponse(); //Ищем по картам точку с указанным адресом
-        } catch(Exception $e) {
-            throw new \Exception('Ошибка запроса в API Яндекс.Карт: ' . $e->getMessage(), 4);
-        }
-
-        $location = $locations->getFirst();
-
-        if (empty($location)) {
-            throw new \Exception('Не удаётся получить координаты адреса. Пожалуйста, попробуйте ещё раз или создайте заявку вручную.', 3);
-        }
+        $location = $this->addresses->getData($address);
 
         if (!empty($location)) {
-            return [$location->getLatitude(), $location->getLongitude(), $address];
+            return [$location->getLat(), $location->getLng(), $address];
         } else {
             return [];
         }

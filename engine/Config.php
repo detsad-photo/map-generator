@@ -7,6 +7,8 @@
  * Time: 15:18
  */
 
+namespace Maps;
+
 /**
  * Класс всех настроек
  */
@@ -51,7 +53,7 @@ class Config {
      * Пустой конструктор, в котором создаётся подключение mysqli
      */
     public function __construct(){
-        $this->mysqli = new mysqli($this->mysqli_host, $this->mysqli_login, $this->mysqli_password, $this->mysqli_database);
+        $this->mysqli = new \mysqli($this->mysqli_host, $this->mysqli_login, $this->mysqli_password, $this->mysqli_database);
 
         if (mysqli_connect_errno()){
             printf("Не удалось подключиться: %s\n", mysqli_connect_error());

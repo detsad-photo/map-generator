@@ -7,7 +7,9 @@
  * Time: 21:06
  */
 
-require_once __DIR__."/engine/autoload.php";
+use Maps\Maps;
+
+require_once __DIR__."/composer/vendor/autoload.php";
 
 header('Content-Type: application/json');
 
@@ -16,6 +18,8 @@ $result = [
 ];
 
 $request = file_get_contents('php://input');
+
+$maps = new Maps();
 
 if (!empty($request)) {
 
@@ -29,8 +33,6 @@ if (!empty($request)) {
                 'url' => $config->base_domain.'map.php?id='.$map
             ];
         } elseif (!empty($map)){
-            $maps->logRequest('api1_newmap', $request['address']);
-
             $map = [$map];
             $result = $maps->Add($map);
 
@@ -47,7 +49,6 @@ if (!empty($request)) {
         }
     } elseif(!empty($request['function']) AND !empty($request['address'])) {
         if($request['function'] == 'data') {
-            $maps->logRequest('api4_getdata', $request['address']);
             try {
                 $result['data'] = $maps->getData($request['address']);
                 $result['ok'] = true;
@@ -59,7 +60,6 @@ if (!empty($request)) {
             $result['error'] = 'Undefined function.';
         }
     } elseif(!empty($request['address'])) {
-        $maps->logRequest('api2_getcoords', $request['address']);
         try {
             $coords = $maps->getCoords($request['address']);
             $result['ok'] = true;
@@ -69,7 +69,6 @@ if (!empty($request)) {
             $result['error_code'] = $e->getCode();
         }
     } elseif(!empty($result['id']) AND !empty($result['text'])) {
-        $maps->logRequest('api3', $request['address']);
         if ($maps->AddTextToMap($result['id'], $result['text'])){
             $result['ok'] = true;
         } else{

@@ -7,6 +7,8 @@
  * Time: 21:10
  */
 
+namespace Maps;
+
 class Users extends Config
 {
 
