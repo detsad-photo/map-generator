@@ -7,11 +7,14 @@
  * Time: 3:29
  */
 
-require_once __DIR__."/engine/autoload.php";
+use Maps\Maps;
+
+require_once __DIR__."/composer/vendor/autoload.php";
 
 $saleId = (!empty($_GET['sale'])) ? $_GET['sale'] : 0;
 $statusName = (!empty($_GET['status'])) ? $_GET['status'] : '';
 
+$maps = new Maps();
 $dates = $maps->getAvalibleDates($saleId, $statusName);
 
 header('Content-Type: application/json');

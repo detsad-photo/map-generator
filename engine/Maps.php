@@ -49,6 +49,38 @@ class Maps extends Config
     }
 
     /**
+     * @param int $eventRowId
+     * @return array
+     * @throws DatabaseException
+     * @throws MapsError
+     * @throws DatabaseException
+     */
+    public function getEventLocation(int $eventRowId): array
+    {
+        $eventRowId = $this->mysqli->escape_string($eventRowId);
+
+        $eventData = $this->mysqli->query("SELECT `name`, `comment`, `person`, `address`, `shooting` FROM `events` WHERE `row_id` = '$eventRowId' LIMIT 1");
+
+        if ($eventData->num_rows > 0) {
+            $eventData = $eventData->fetch_assoc();
+            $address = $eventData['address'];
+
+            $addressData = $this->addresses->getData($address);
+            $eventData['data'] = $addressData;
+
+            $letter = substr($eventData['shooting'], -1, 1);
+            $company = $this->mysqli->query("SELECT `name` FROM `numbers` WHERE letter = '$letter' LIMIT 1");
+            $company = $company->fetch_assoc();
+
+            $eventData['company'] = $company['name'];
+
+            return $eventData;
+        } else{
+            throw new DatabaseException('Данная съёмка не найдена в базе данных', 0);
+        }
+    }
+
+    /**
      * Добавить карту с массивом точек на ней
      * $array[] Это масив масивов точек
      *  $array[]['address'] Адрес
@@ -182,7 +214,7 @@ class Maps extends Config
             'lng' => $location->getLng(),
             'area' => $location->getArea(),
             'city' => $location->getCity(),
-            'street' => $location->getCity(),
+            'street' => $location->getStreet(),
             'house' => $location->getHouse()
         ];
 

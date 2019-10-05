@@ -7,7 +7,13 @@
  * Time: 21:49
  */
 
-require_once __DIR__."/engine/autoload.php";
+use Maps\Maps;
+use Maps\Users;
+
+require_once __DIR__."/composer/vendor/autoload.php";
+
+$users = new Users();
+$maps = new Maps();
 
 if (!$users->verify()) {
     header('Location: /login.php');

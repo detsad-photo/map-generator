@@ -39,14 +39,15 @@ class Addresses extends Config
         $address = $this->normalizeAddress($address);
 
         try {
-            return $this->getDataByHash(md5($address));
+            $data = $this->getDataByHash(md5($address));
+            return $data;
         } catch (DatabaseException $e) {
             unset($e);
         }
 
         $this->logRequest('get', $address);
         try {
-            $location = $this->maps->setQuery($address)->setLimit(1)->load()->getResponse()->getFirst();
+            $location = $this->maps->setToken('06b1d440-3400-4fa6-8a57-9150449e25c7')->setQuery($address)->setLimit(1)->load()->getResponse()->getFirst();
         } catch (MapsError $e) {
             throw new MapsError('Ошибка ответа от API Яндекс.Карт: ' . $e->getMessage(), 4);
         } catch (ServerError $e) {
@@ -106,13 +107,13 @@ class Addresses extends Config
      */
     protected function addAddress(string $originalAddress, array $result): Address
     {
-        $addressHash = $this->mysqli->escape_string($originalAddress);
+        $addressHash = $this->mysqli->escape_string(md5($originalAddress));
 
         foreach ($result as $key => $value) {
             $result[$key] = $this->mysqli->escape_string($value);
         }
 
-        $this->mysqli->query("INSERT INTO `addresses`(`address`, `hash`, `lat`, `lng`, `area`, `city`, `street`, `house`) VALUES ('{$result['address']}', '{$addressHash}', '{$result['lat']}', '{$result['lng']}', '{$result['area']}', '{$result['city']}', '{$result['street']}', '{$result['house']}')");
+        $result = $this->mysqli->query("INSERT INTO `addresses`(`address`, `hash`, `lat`, `lng`, `area`, `city`, `street`, `house`) VALUES ('{$result['address']}', '{$addressHash}', '{$result['lat']}', '{$result['lng']}', '{$result['area']}', '{$result['city']}', '{$result['street']}', '{$result['house']}')");
 
         return $this->getDataByHash($addressHash);
     }

@@ -7,6 +7,11 @@
  * Time: 21:06
  */
 
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+use Maps\Config;
 use Maps\Maps;
 
 require_once __DIR__."/composer/vendor/autoload.php";
@@ -20,6 +25,7 @@ $result = [
 $request = file_get_contents('php://input');
 
 $maps = new Maps();
+$config = new Config();
 
 if (!empty($request)) {
 

@@ -7,8 +7,11 @@
  * Time: 22:26
  */
 
-require_once __DIR__."/engine/autoload.php";
+use Maps\Maps;
 
+require_once __DIR__."/composer/vendor/autoload.php";
+
+$maps = new Maps();
 $map = $maps->GetAll();
 
 ?><!DOCTYPE html>

@@ -7,10 +7,15 @@
  * Time: 21:24
  */
 
-require_once __DIR__."/engine/autoload.php";
+use Maps\Config;
+use Maps\Maps;
+
+require_once __DIR__."/composer/vendor/autoload.php";
 
 if (!empty($_GET['id'])) {
 
+    $maps = new Maps();
+    $config = new Config();
     $map = $maps->Get($_GET['id']);
 
     if ($map === false) {

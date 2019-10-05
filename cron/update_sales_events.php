@@ -7,6 +7,11 @@
  * Time: 20:17
  */
 
-require_once __DIR__."/../engine/autoload.php";
+use Maps\Maps;
+
+require_once __DIR__."/../composer/vendor/autoload.php";
+
+$maps = new Maps();
 $maps->updateSalesEvents();
+
 die();
