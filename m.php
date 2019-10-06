@@ -63,7 +63,7 @@ try {
         <div class="item" data-lat="<?php echo $result['data']->getLat() ?>" data-long="<?php echo $result['data']->getLng() ?>">
             <p><?php echo str_replace("\n", "<br>", $result['name']) ?></p>
             <p><?php echo str_replace("\n", "<br>", $result['comment']."\n\n".$result['person']) ?></p>
-            <p><b>Фотосутдия: <?php echo $result['company'] ?></b></p>
+            <p><b>Фотостудия: <?php echo $result['company'] ?></b></p>
             <p><?php echo str_replace("\n", "<br>", $result['address']) ?></p>
         </div>
     </div>
