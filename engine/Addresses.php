@@ -58,7 +58,11 @@ class Addresses extends Config
             throw new MapsError('Неизвестная ошибка API Яндекс.Карт: ' . $e->getMessage(), 1);
         }
 
-        $street = (!empty($location->getThoroughfareName())) ? $location->getThoroughfareName() : $location->getDependentLocalityName();
+        $street = $location->getDependentLocalityName();
+        if (!empty($location->getThoroughfareName())) {
+            if (!empty($street)) $street .= ', ';
+            $street .= $location->getThoroughfareName();
+        }
 
         return $this->addAddress($address, [
             'address' => $location->getAddress(),
