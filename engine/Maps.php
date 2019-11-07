@@ -215,7 +215,8 @@ class Maps extends Config
             'area' => $location->getArea(),
             'city' => $location->getCity(),
             'street' => $location->getStreet(),
-            'house' => $location->getHouse()
+            'house' => $location->getHouse(),
+            'zip' => $location->getZip()
         ];
 
         $axiomusAddress = '';
@@ -243,6 +244,7 @@ class Maps extends Config
             'city' => $result['city'],
             'street' => $result['street'],
             'house' => $result['house'],
+            'zip' => $result['zip'],
             'axiomus' => [
                 'address' => $axiomusAddress,
                 'city' => $axiomusCityIndex,

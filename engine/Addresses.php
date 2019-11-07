@@ -71,7 +71,8 @@ class Addresses extends Config
             'area' => $location->getAdministrativeAreaName(),
             'city' => $location->getLocalityName(),
             'street' => $street,
-            'house' => $location->getPremiseNumber()
+            'house' => $location->getPremiseNumber(),
+            'zip' => $location->getRawData()['metaDataProperty']['GeocoderMetaData']['Address']['postal_code']
         ]);
     }
 
@@ -117,7 +118,7 @@ class Addresses extends Config
             $result[$key] = $this->mysqli->escape_string($value);
         }
 
-        $result = $this->mysqli->query("INSERT INTO `addresses`(`address`, `hash`, `lat`, `lng`, `area`, `city`, `street`, `house`) VALUES ('{$result['address']}', '{$addressHash}', '{$result['lat']}', '{$result['lng']}', '{$result['area']}', '{$result['city']}', '{$result['street']}', '{$result['house']}')");
+        $result = $this->mysqli->query("INSERT INTO `addresses`(`address`, `hash`, `lat`, `lng`, `area`, `city`, `street`, `house`, `zip`) VALUES ('{$result['address']}', '{$addressHash}', '{$result['lat']}', '{$result['lng']}', '{$result['area']}', '{$result['city']}', '{$result['street']}', '{$result['house']}', '{$result['zip']}')");
 
         return $this->getDataByHash($addressHash);
     }
@@ -151,6 +152,7 @@ class Addresses extends Config
         $address->setCity($data['city']);
         $address->setStreet($data['street']);
         $address->setHouse($data['house']);
+        $address->setZip($data['zip']);
 
         return $address;
     }

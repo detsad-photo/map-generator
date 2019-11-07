@@ -10,7 +10,11 @@
 
 use Maps\Addresses;
 
-require_once __DIR__."/composer/vendor/autoload.php";
-$addresses = new Addresses();
+header('Content-Type: application/json');
 
-//$addresses->getData('Россия, Республика Крым, Евпатория, улица Пушкина, 79А');
+require_once __DIR__."/composer/vendor/autoload.php";
+$maps = new \Maps\Maps();
+
+$result = $maps->getData('Россия, Республика Крым, Евпатория, улица Пушкина, 79А');
+
+print_r(json_encode($result));

@@ -48,6 +48,26 @@ class Address
      * @var string
      */
     protected $house;
+    /**
+     * @var ?int
+     */
+    protected $zip = null;
+
+    /**
+     * @return mixed
+     */
+    public function getZip()
+    {
+        return $this->zip;
+    }
+
+    /**
+     * @param mixed $zip
+     */
+    public function setZip($zip): void
+    {
+        $this->zip = $zip;
+    }
 
     /**
      * @return int
