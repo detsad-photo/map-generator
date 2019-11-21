@@ -64,6 +64,12 @@ class Addresses extends Config
             $street .= $location->getThoroughfareName();
         }
 
+        $zip = null;
+        $data = $location->getRawData();
+        if (!empty($data['metaDataProperty']['GeocoderMetaData']['Address']['postal_code'])) {
+            $zip = $location->getRawData()['metaDataProperty']['GeocoderMetaData']['Address']['postal_code'];
+        }
+
         return $this->addAddress($address, [
             'address' => $location->getAddress(),
             'lat' => $location->getLatitude(),
@@ -72,7 +78,7 @@ class Addresses extends Config
             'city' => $location->getLocalityName(),
             'street' => $street,
             'house' => $location->getPremiseNumber(),
-            'zip' => $location->getRawData()['metaDataProperty']['GeocoderMetaData']['Address']['postal_code']
+            'zip' => $zip
         ]);
     }
 
@@ -118,7 +124,9 @@ class Addresses extends Config
             $result[$key] = $this->mysqli->escape_string($value);
         }
 
-        $result = $this->mysqli->query("INSERT INTO `addresses`(`address`, `hash`, `lat`, `lng`, `area`, `city`, `street`, `house`, `zip`) VALUES ('{$result['address']}', '{$addressHash}', '{$result['lat']}', '{$result['lng']}', '{$result['area']}', '{$result['city']}', '{$result['street']}', '{$result['house']}', '{$result['zip']}')");
+        $zip = (!empty($result['zip'])) ? "'{$result['zip']}'" : 'NULL';
+
+        $this->mysqli->query("INSERT INTO `addresses`(`address`, `hash`, `lat`, `lng`, `area`, `city`, `street`, `house`, `zip`) VALUES ('{$result['address']}', '{$addressHash}', '{$result['lat']}', '{$result['lng']}', '{$result['area']}', '{$result['city']}', '{$result['street']}', '{$result['house']}', {$zip})");
 
         return $this->getDataByHash($addressHash);
     }
