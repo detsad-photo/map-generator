@@ -33,6 +33,10 @@ class Address
      */
     protected $lng;
     /**
+     * @var ?string
+     */
+    protected $province;
+    /**
      * @var string
      */
     protected $area;
@@ -52,6 +56,22 @@ class Address
      * @var ?int
      */
     protected $zip = null;
+
+    /**
+     * @return mixed
+     */
+    public function getProvince()
+    {
+        return $this->province;
+    }
+
+    /**
+     * @param mixed $province
+     */
+    public function setProvince($province): void
+    {
+        $this->province = $province;
+    }
 
     /**
      * @return mixed

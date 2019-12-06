@@ -14,7 +14,8 @@ header('Content-Type: application/json');
 
 require_once __DIR__."/composer/vendor/autoload.php";
 $maps = new \Maps\Maps();
+$addresses = new Addresses();
 
-$result = $maps->getData('Россия, Республика Крым, Евпатория, улица Пушкина, 79А');
+$result = $maps->getData('Россия, Свердловская область, Берёзовский городской округ, поселок городского типа Сарапулка, улица Калинина, 37А');
 
 print_r(json_encode($result));

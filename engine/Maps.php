@@ -212,6 +212,7 @@ class Maps extends Config
             'address' => $location->getAddress(),
             'lat' => $location->getLat(),
             'lng' => $location->getLng(),
+            'province' => $location->getProvince(),
             'area' => $location->getArea(),
             'city' => $location->getCity(),
             'street' => $location->getStreet(),
@@ -224,7 +225,10 @@ class Maps extends Config
         $axiomusFromMkad = 0;
 
         if (mb_strtolower($result['city']) != 'москва' AND mb_strtolower($result['city']) != 'санкт-петербург') {
-            $axiomusAddress = "г. {$result['city']}, ";
+            $axiomusAddress = '';
+
+            if (stripos($axiomusAddress, 'поселок ') !== false OR stripos($axiomusAddress, 'село ') !== false) $axiomusAddress .= 'г. ';
+            $axiomusAddress .= "{$result['city']}, ";
             $axiomusFromMkad = 1;
         }
         if (mb_strtolower($result['city']) == 'санкт-петербург' OR mb_strtolower($result['area']) == 'санкт-петербург') {
@@ -240,6 +244,7 @@ class Maps extends Config
                 floatval($result['lat']),
                 floatval($result['lng'])
             ],
+            'province' => $result['province'],
             'area' => $result['area'],
             'city' => $result['city'],
             'street' => $result['street'],

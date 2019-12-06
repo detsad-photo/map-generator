@@ -74,7 +74,8 @@ class Addresses extends Config
             'address' => $location->getAddress(),
             'lat' => $location->getLatitude(),
             'lng' => $location->getLongitude(),
-            'area' => $location->getAdministrativeAreaName(),
+            'province' => $location->getAdministrativeAreaName(),
+            'area' => $location->getSubAdministrativeAreaName(),
             'city' => $location->getLocalityName(),
             'street' => $street,
             'house' => $location->getPremiseNumber(),
@@ -126,7 +127,7 @@ class Addresses extends Config
 
         $zip = (!empty($result['zip'])) ? "'{$result['zip']}'" : 'NULL';
 
-        $this->mysqli->query("INSERT INTO `addresses`(`address`, `hash`, `lat`, `lng`, `area`, `city`, `street`, `house`, `zip`) VALUES ('{$result['address']}', '{$addressHash}', '{$result['lat']}', '{$result['lng']}', '{$result['area']}', '{$result['city']}', '{$result['street']}', '{$result['house']}', {$zip})");
+        $this->mysqli->query("INSERT INTO `addresses`(`address`, `hash`, `lat`, `lng`, `province`, `area`, `city`, `street`, `house`, `zip`) VALUES ('{$result['address']}', '{$addressHash}', '{$result['lat']}', '{$result['lng']}', '{$result['province']}',  '{$result['area']}', '{$result['city']}', '{$result['street']}', '{$result['house']}', {$zip})");
 
         return $this->getDataByHash($addressHash);
     }
@@ -156,6 +157,7 @@ class Addresses extends Config
         $address->setHash($data['hash']);
         $address->setLat($data['lat']);
         $address->setLng($data['lng']);
+        $address->setProvince($data['province']);
         $address->setArea($data['area']);
         $address->setCity($data['city']);
         $address->setStreet($data['street']);
