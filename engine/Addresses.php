@@ -58,6 +58,10 @@ class Addresses extends Config
             throw new MapsError('Неизвестная ошибка API Яндекс.Карт: ' . $e->getMessage(), 1);
         }
 
+        if (empty($location)) {
+            throw new MapsError('Адрес не найден на Яндекс.Картах', 5);
+        }
+
         $street = $location->getDependentLocalityName();
         if (!empty($location->getThoroughfareName())) {
             if (!empty($street)) $street .= ', ';

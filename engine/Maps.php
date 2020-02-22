@@ -231,7 +231,13 @@ class Maps extends Config
             $axiomusAddress .= "{$result['city']}, ";
             $axiomusFromMkad = 1;
         }
-        if (mb_strtolower($result['city']) == 'санкт-петербург' OR mb_strtolower($result['area']) == 'санкт-петербург') {
+
+        if (
+            mb_strtolower($result['city']) == 'санкт-петербург'
+            OR mb_strtolower($result['area']) == 'санкт-петербург'
+            OR mb_stripos($result['province'], 'ленинградская') !== false
+            OR mb_stripos($result['area'], 'ленинградская') !== false
+        ) {
             $axiomusCityIndex = 1;
         }
 
