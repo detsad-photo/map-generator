@@ -3,7 +3,6 @@
 Это приложение написано на PHP 7.2
 #### Для обновления приложения нужно быть знакомым с пакетами и технологиями:
 
-- [phpoffice/phpspreadsheet](https://github.com/PHPOffice/PhpSpreadsheet) - парсер XLSX таблиц
 - [yandex/geo](https://github.com/yandex-php/php-yandex-geo) - класс для работы с API Яндекс.Геокодирование, чтобы конвертировать адреса в точки на карте со своими координатами
 - [Яндекс.Карты JS API](https://tech.yandex.ru/maps/doc/jsapi/2.1/quick-start/index-docpage/) - JavaScript библиотека для отображения карт
 

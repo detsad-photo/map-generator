@@ -220,29 +220,30 @@ class Maps extends Config
             'zip' => $location->getZip()
         ];
 
-        $axiomusAddress = '';
-        $axiomusCityIndex = 0;
-        $axiomusFromMkad = 0;
-
-        if (mb_strtolower($result['city']) != 'москва' AND mb_strtolower($result['city']) != 'санкт-петербург') {
-            $axiomusAddress = '';
-
-            if (stripos($axiomusAddress, 'поселок ') !== false OR stripos($axiomusAddress, 'село ') !== false) $axiomusAddress .= 'г. ';
-            $axiomusAddress .= "{$result['city']}, ";
-            $axiomusFromMkad = 1;
-        }
+        $boxberryAddress = '';
+        $boxberryCity = '';
+        $isCapital = false;
 
         if (
             mb_strtolower($result['city']) == 'санкт-петербург'
             OR mb_strtolower($result['area']) == 'санкт-петербург'
             OR mb_stripos($result['province'], 'ленинградская') !== false
             OR mb_stripos($result['area'], 'ленинградская') !== false
+            OR mb_strtolower($result['city']) == 'москва'
+            OR mb_strtolower($result['area']) == 'москва'
+            OR mb_stripos($result['province'], 'московская') !== false
+            OR mb_stripos($result['area'], 'московская') !== false
         ) {
-            $axiomusCityIndex = 1;
+            $isCapital = true;
         }
 
-        $axiomusAddress .= "{$result['street']}, {$result['house']}";
-        $axiomusAddress = trim($axiomusAddress);
+        $boxberryAddress .= "{$result['street']}, {$result['house']}";
+        $boxberryAddress = trim($boxberryAddress);
+
+        if (!empty($result['province'])) $boxberryCity .= "{$result['province']}, ";
+        if (!empty($result['area'])) $boxberryCity .= "{$result['area']}, ";
+        if (!empty($result['city'])) $boxberryCity .= "{$result['city']}, ";
+        $boxberryCity = trim($boxberryCity, ', ');
 
         return [
             'address' => $result['address'],
@@ -256,10 +257,10 @@ class Maps extends Config
             'street' => $result['street'],
             'house' => $result['house'],
             'zip' => $result['zip'],
-            'axiomus' => [
-                'address' => $axiomusAddress,
-                'city' => $axiomusCityIndex,
-                'mkad' => $axiomusFromMkad
+            'capital' => $isCapital,
+            'boxberry' => [
+                'address' => $boxberryAddress,
+                'city' => $boxberryCity,
             ]
         ];
     }
