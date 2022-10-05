@@ -23,13 +23,21 @@ $ php phpdox.phar
 
 ### Развёртывание Docker Compose
 Для тестирования и разработки. Запуск происходит на http://localhost:8001/
-```sh
-$ docker-compose -f docker-compose.yml -f docker-compose.dev.yml up -d --build
+```shell
+docker-compose -f docker-compose.yaml -f docker-compose.dev.yaml up -d --build
 ```
 
 Для продакшена:
-```sh
-$ docker-compose -f docker-compose.yml up -d --build
+```shell
+docker-compose -f docker-compose.yaml up -d --build
+```
+
+---
+
+### Тестирование GitHub Actions
+
+```shell
+act -P ubuntu-latest=node:16-buster-slim
 ```
 
 ---

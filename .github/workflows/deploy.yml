@@ -1,0 +1,34 @@
+name: 🔥 maps.detsad.photo deploy
+on:
+  #push:
+    #branches: [ master ]
+jobs:
+  init:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🏁 Actions starts
+        uses: actions/checkout@v3
+      - name: 🔍 Read private key
+        uses: andstor/file-reader-action@v1
+        id: deploy_key
+        with:
+          path: s_deploy_key.pem
+      - name: 🔍 Read public key
+        uses: andstor/file-reader-action@v1
+        id: deploy_key_public
+        with:
+          path: s_deploy_key.pub
+      - name: 🚀 Deploy to host
+        uses: alex-ac/github-action-ssh-docker-compose@master
+        with:
+          ssh_host: 178.154.205.10
+          ssh_private_key: ${{ steps.deploy_key.outputs.contents }}
+          ssh_user: ubuntu
+          docker_compose_prefix: maps
+          #remote_docker_host: ubuntu@178.154.205.10
+          #ssh_public_key: ${{ steps.deploy_key_public.outputs.contents }}
+          #ssh_private_key: ${{ steps.deploy_key.outputs.contents }}
+          #deployment_mode: docker-compose
+          #args: up -d --build
+          #docker_prune: true
+          #pull_images_first: true
