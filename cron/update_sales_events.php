@@ -9,7 +9,7 @@
 
 use Maps\Maps;
 
-require_once __DIR__."/../composer/vendor/autoload.php";
+require_once(__DIR__ . '/../bootstrap.php');
 
 $maps = new Maps();
 $maps->updateSalesEvents();

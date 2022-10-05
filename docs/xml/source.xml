@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<source xmlns="http://xml.phpdox.net/src">
-  <dir name="J:/projects/yandex-maps/engine">
-    <file name="autoload.php" size="548" time="2018-11-16T08:55:23+00:00" unixtime="1542358523" sha1="7d9506c147f298594d25c3f04104625b66bf38fa" xml="tokens/autoload.php.xml"/>
-    <file name="Config.php" size="1648" time="2018-11-16T08:51:11+00:00" unixtime="1542358271" sha1="0cc4c08a597013de33531c26f5fae18b7e995079" xml="tokens/Config.php.xml"/>
-    <file name="Maps.php" size="7940" time="2018-11-17T10:24:33+00:00" unixtime="1542450273" sha1="a85657c547f0c2f805d18ff3bfa14d19a832e571" xml="tokens/Maps.php.xml"/>
-  </dir>
-</source>

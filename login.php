@@ -9,7 +9,7 @@
 
 use Maps\Users;
 
-require_once __DIR__ . "/composer/vendor/autoload.php";
+require_once(__DIR__ . '/bootstrap.php');
 
 $users = new Users();
 

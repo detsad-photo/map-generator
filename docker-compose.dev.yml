@@ -1,0 +1,18 @@
+version: '3.9'
+services:
+  nginx:
+    image: nginx:latest
+    volumes:
+      - './docker/nginx/nginx.conf:/etc/nginx/conf.d/default.conf'
+      - './:/var/www/html'
+  maps:
+    build:
+      context: ./
+      dockerfile: docker/Dockerfile
+      target: base
+    image: maps
+    environment:
+      MYSQL_HOST: 178.154.205.10
+      DEVELOPMENT: true
+    volumes:
+      - './:/var/www/html'

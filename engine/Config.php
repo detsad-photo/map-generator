@@ -1,13 +1,8 @@
 <?php
-/**
- * Created by PhpStorm.
- * Project: paypal-online-kassa
- * User: Anton Neverov <neverov12@gmail.com>
- * Date: 18.07.2018
- * Time: 15:18
- */
 
 namespace Maps;
+
+use mysqli;
 
 /**
  * Класс всех настроек
@@ -21,29 +16,8 @@ class Config {
     public $base_domain = 'http://maps.detsad.photo/';
 
     /**
-     * Хост MySQLi
-     * @var string
-     */
-    private $mysqli_host = "localhost";
-    /**
-     * Логин MySQL
-     * @var string
-     */
-    private $mysqli_login = "main";
-    /**
-     * Пароль MySQL
-     * @var string
-     */
-    private $mysqli_password = "eR6R82CFdeOJ3PW3";
-    /**
-     * База данных MySQL
-     * @var string
-     */
-    private $mysqli_database = "main";
-
-    /**
      * Изначально null, но в конструкторе создаётся экземпляр класса /mysqli
-     * @var mysqli|null
+     * @var mysqli
      */
     public $mysqli = null;
 
@@ -52,8 +26,13 @@ class Config {
     /**
      * Пустой конструктор, в котором создаётся подключение mysqli
      */
-    public function __construct(){
-        $this->mysqli = new \mysqli($this->mysqli_host, $this->mysqli_login, $this->mysqli_password, $this->mysqli_database);
+    public function __construct() {
+        $this->mysqli = new mysqli(
+            $_ENV['MYSQL_HOST'],
+            $_ENV['MYSQL_LOGIN'],
+            $_ENV['MYSQL_PASSWORD'],
+            $_ENV['MYSQL_DATABASE']
+        );
 
         if (mysqli_connect_errno()){
             printf("Не удалось подключиться: %s\n", mysqli_connect_error());

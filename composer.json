@@ -1,0 +1,25 @@
+{
+  "name": "neverov12/yandexmapsfromexcel",
+  "description": "Excel file converter to Yandex Maps page",
+  "minimum-stability": "dev",
+  "license": "",
+  "authors": [
+    {
+      "name": "Anton Neverov",
+      "email": "neverov12@gmail.com"
+    }
+  ],
+  "require": {
+    "ext-mysqli": "*",
+    "ext-json": "*",
+    "php": ">=7.2",
+    "yandex/geo": "v1.2.2",
+    "guzzlehttp/guzzle": "6.3.3",
+    "vlucas/phpdotenv": "5.4.x-dev"
+  },
+  "autoload": {
+    "psr-4": {
+      "Maps\\": "engine"
+    }
+  }
+}

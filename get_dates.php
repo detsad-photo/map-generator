@@ -9,7 +9,7 @@
 
 use Maps\Maps;
 
-require_once __DIR__."/composer/vendor/autoload.php";
+require_once(__DIR__ . '/bootstrap.php');
 
 $saleId = (!empty($_GET['sale'])) ? $_GET['sale'] : 0;
 $statusName = (!empty($_GET['status'])) ? $_GET['status'] : '';

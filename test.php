@@ -12,7 +12,7 @@ use Maps\Addresses;
 
 header('Content-Type: application/json');
 
-require_once __DIR__."/composer/vendor/autoload.php";
+require_once(__DIR__ . '/bootstrap.php');
 $maps = new \Maps\Maps();
 $addresses = new Addresses();
 

@@ -14,7 +14,7 @@ error_reporting(E_ALL);
 use Maps\Config;
 use Maps\Maps;
 
-require_once __DIR__."/composer/vendor/autoload.php";
+require_once(__DIR__ . '/bootstrap.php');
 
 header('Content-Type: application/json');
 

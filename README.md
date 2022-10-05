@@ -20,6 +20,20 @@
 $ php phpdox.phar
 ```
 ---
+
+### Развёртывание Docker Compose
+Для тестирования и разработки. Запуск происходит на http://localhost:8001/
+```sh
+$ docker-compose -f docker-compose.yml -f docker-compose.dev.yml up -d --build
+```
+
+Для продакшена:
+```sh
+$ docker-compose -f docker-compose.yml up -d --build
+```
+
+---
+
 ### Разработал
 Антон Неверов <neverov12@gmail.com>
 
