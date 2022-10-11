@@ -12,5 +12,9 @@ hosts:
     remote_user: ubuntu
     deploy_path: /var/www/maps.detsad.photo
 
+tasks:
+  test:
+    - run: echo "TEST"
+
 after:
   deploy:failed: deploy:unlock
