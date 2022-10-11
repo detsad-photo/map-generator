@@ -11,7 +11,6 @@ hosts:
     hostname: 178.154.205.10
     remote_user: ubuntu
     deploy_path: '/var/www/maps.detsad.photo'
-    identity_file: s_deploy_key.pem
 
 after:
   deploy:failed: deploy:unlock
