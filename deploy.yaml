@@ -10,7 +10,7 @@ hosts:
     ssh_multiplexing: false
     hostname: 178.154.205.10
     remote_user: ubuntu
-    deploy_path: '/var/www/maps.detsad.photo'
+    deploy_path: /var/www/maps.detsad.photo
 
 after:
   deploy:failed: deploy:unlock
