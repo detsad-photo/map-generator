@@ -15,10 +15,10 @@ jobs:
       - name: 🐘 Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.0'
+          php-version: '7.2'
       - name: 🚀 Deploy to host
         uses: deployphp/action@v1
         with:
-          dep: --file=deploy.yaml test maps.detsad.photo
+          dep: deploy all
           private-key: ${{ secrets.PRIVATE_KEY }}
           verbosity: -vvv
