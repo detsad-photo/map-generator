@@ -17,9 +17,9 @@ jobs:
         with:
           php-version: '7.4'
           tools: composer:v2
-      - name: Download `deployer.phar`
+      - name: 📥 Download `deployer.phar`
         run: composer global require deployer/deployer --no-interaction --verbose --ansi
-      - name: Get composer global bin-dir path
+      - name: 🔍 Get composer global bin-dir path
         id: composer-bin-dir
         run: echo "::set-output name=path::$(composer global config bin-dir --absolute)"
       - name: 🚀 Deploy to host
