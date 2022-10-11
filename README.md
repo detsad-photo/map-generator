@@ -34,7 +34,7 @@ docker-compose -f docker-compose.yaml up -d --build
 
 ---
 
-### Тестирование GitHub Actions
+### Тестирование GitHub Actions (не работает)
 
 ```shell
 act -P ubuntu-latest=node:16-buster-slim

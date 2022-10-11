@@ -19,5 +19,5 @@ jobs:
       - name: 🚀 Deploy to host
         uses: deployphp/action@v1
         with:
-          dep: deploy
+          dep: deploy maps.detsad.photo
           private-key: ${{ secrets.PRIVATE_KEY }}
