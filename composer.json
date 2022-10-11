@@ -21,5 +21,8 @@
     "psr-4": {
       "Maps\\": "engine"
     }
+  },
+  "require-dev": {
+    "deployer/deployer": "dev-master"
   }
 }

@@ -1,0 +1,17 @@
+import: 
+  - recipe/common.php
+  - recipe/composer.php
+
+config:
+  repository: 'git@github.com:detsad-photo/map-generator.git'
+  
+hosts:
+  maps.detsad.photo:
+    ssh_multiplexing: false
+    hostname: 178.154.205.10
+    remote_user: ubuntu
+    deploy_path: '/var/www/maps.detsad.photo'
+    identity_file: s_deploy_key.pem
+
+after:
+  deploy:failed: deploy:unlock
