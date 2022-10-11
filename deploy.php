@@ -17,6 +17,8 @@ host('')
     ->set('remote_user', 'deployer')
     ->set('deploy_path', '~/');
 
+task('deploy');
+
 // Hooks
 
 after('deploy:failed', 'deploy:unlock');
