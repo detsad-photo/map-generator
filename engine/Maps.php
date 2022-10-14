@@ -11,7 +11,6 @@ namespace Maps;
 
 use GuzzleHttp\Client;
 use Maps\Exceptions\DatabaseException;
-use Maps\Exceptions\MapsException;
 use Yandex\Geo\Api;
 use Yandex\Geo\Exception;
 use Yandex\Geo\Exception\MapsError;

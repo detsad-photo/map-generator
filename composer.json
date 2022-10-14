@@ -19,7 +19,7 @@
   },
   "autoload": {
     "psr-4": {
-      "Maps\\": "engine"
+      "Maps\\": "engine/"
     }
   },
   "require-dev": {
