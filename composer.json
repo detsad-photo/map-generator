@@ -23,6 +23,6 @@
     }
   },
   "require-dev": {
-    "deployer/deployer": "dev-master"
+    "deployer/deployer": "v7.0.2"
   }
 }
