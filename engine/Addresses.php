@@ -47,7 +47,7 @@ class Addresses extends Config
 
         $this->logRequest('get', $address);
         try {
-            $location = $this->maps->setToken('06b1d440-3400-4fa6-8a57-9150449e25c7')->setQuery($address)->setLimit(1)->load()->getResponse()->getFirst();
+            $location = $this->maps->setToken('b2104d1a-9f94-4eb0-bde7-35618be3d8ae')->setQuery($address)->setLimit(1)->load()->getResponse()->getFirst();
         } catch (MapsError $e) {
             throw new MapsError('Ошибка ответа от API Яндекс.Карт: ' . $e->getMessage(), 4);
         } catch (ServerError $e) {
